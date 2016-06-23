@@ -28,7 +28,7 @@ I wondered if this question should also help us understand the post-Y2K American
 #Methodology
 First, I looked at the relationship between how long, and to what extent a song was popular, finding they are correlated.
 
-![Chart Showing Association Between Duration and Magnitude of Popularity](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks.jpg "Popularity Duration and Magnitude")
+![Chart Showing Association Between Duration and Magnitude of Popularity](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks.jpg?raw=true "Popularity Duration and Magnitude")
 
 This lead to the construction of  a combination metric, which I named "Billboard ratio": the duration of the songs appearance on the billboard 100, divided by its average position. While this is an imperfect metric, I used it to evaluate the popularity of songs hereafter (except where noted otherwise).
 
@@ -52,10 +52,11 @@ Some patterns emerged once I had crunched the numbers: it appeared that both str
 ![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks.jpgtrackpos_weeksbb_bar.jpg "Positivity and Popularity")
 
 
-![Popular Songs Stay on Charts Longer?](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/track_pos_weeks_jointplot.jpg "Popularity Duration and Positivity"")
+![Popular Songs Stay on Charts Longer?](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/track_pos_weeks_jointplot.jpg?raw=true "Popularity Duration and Positivity")
+
 Because the data is not continuous, a bar chart is a better fit for this visualization.
 
-![Negative Songs Too?](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/trackpos_weeksbb_bar.jpg "Negativity and Popularity")
+![Negative Songs Too?](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/trackpos_weeksbb_bar.jpg?raw=true "Negativity and Popularity")
 
 Based on these charts, I was unable to come to a definitive conclusion about whether increasingly polarized emotional content did indeed lead to increased (or decreased) popularity. I ran 2 paired T-Tests, comparing neutral songs to negative and positively associated chart titles respectively.
 

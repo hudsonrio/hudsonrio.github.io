@@ -25,7 +25,7 @@ I wondered if this question should also help us understand the post-Y2K American
 
 First, I looked at the relationship between how long, and to what extent a song was popular, finding they are correlated.
 
-![Chart Showing Association Between Duration and Magnitude of Popularity](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/avgbb_weeks.jpg)
+![Chart Showing Association Between Duration and Magnitude of Popularity](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks.jpg)
 
 This lead to the construction of  a combination metric, which I named "Billboard ratio": the duration of the songs appearance on the billboard 100, divided by its average position. While this is an imperfect metric, I used it to evaluate the popularity of songs hereafter (except where noted otherwise).
 
@@ -44,7 +44,7 @@ Next, I used a publicly funded dataset made available by Harvard that classifies
 
 Some patterns emerged: it appeared that both strongly positive or negative songs tended to out perform neutral songs:
 
-![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/trackpos_weeksbb_bar.jpg)
+![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks.jpgtrackpos_weeksbb_bar.jpg)
 
 
 ![Popular Songs Stay on Charts Longer?](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/track_pos_weeks_jointplot.jpg)

@@ -35,7 +35,7 @@ First, I looked at the relationship between how long, and to what extent a song 
 
 This lead to the construction of  a combination metric, which I named "Billboard ratio": the duration of the songs appearance on the billboard 100, divided by its average position. While this is an imperfect metric, I used it to evaluate the popularity of songs hereafter (except where noted otherwise).
 
-![Same Chart as Above, with a Jitter Applied to smooth the relationship](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/avgbb_weeks_jitter.jpg "Popularity Duration and Magnitude (jittered)")
+![Same Chart as Above, with a Jitter Applied to smooth the relationship](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/avgbb_weeks_jitter.jpg?raw=true "Popularity Duration and Magnitude (jittered)")
 
 Using this metric, I decided to look at the most popular songs in the dataset, to see if there were any trends. Here are some of the most popular songs in the data:
 
@@ -52,7 +52,7 @@ Next, I used a publicly funded dataset made available by Harvard that classifies
 
 Some patterns emerged once I had crunched the numbers: it appeared that both strongly positive or negative songs tended to out perform neutral songs, as illustrated by the following bar charts:
 
-![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks.jpgtrackpos_weeksbb_bar.jpg "Positivity and Popularity")
+![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks.jpgtrackpos_weeksbb_bar.jpg?raw=true "Positivity and Popularity")
 
 
 ![Popular Songs Stay on Charts Longer?](https://github.com/hudsonrio/hudsonrio.github.io/images/images_proj2/track_pos_weeks_jointplot.jpg?raw=true "Popularity Duration and Positivity")

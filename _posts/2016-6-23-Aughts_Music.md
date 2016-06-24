@@ -52,14 +52,14 @@ Next, I used a publicly funded dataset made available by Harvard that classifies
 
 Some patterns emerged once I had crunched the numbers: it appeared that both strongly positive or negative songs tended to out perform neutral songs, as illustrated by the following bar charts:
 
-![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/trackpos_weeksbb_bar.jpg?raw=true "Positivity and Popularity")
+![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/trackpos_bb_ratio_bar.jpg?raw=true "Positivity and Popularity")
 
 
 ![Popular Songs Stay on Charts Longer?](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/track_pos_weeks_jointplot.jpg?raw=true "Popularity Duration and Positivity")
 
 Because the data is not continuous, a bar chart is a better fit for this visualization.
 
-![Negative Songs Too?](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/trackpos_weeksbb_bar.jpg?raw=true "Negativity and Popularity")
+![Negative Songs More Popular](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/trackneg_bb_ratio_bar.jpg?raw=true "Negativity and Popularity")
 
 Based on these charts, I was unable to come to a definitive conclusion about whether increasingly polarized emotional content did indeed lead to increased (or decreased) popularity. I ran 2 paired T-Tests, comparing neutral songs to negative and positively associated chart titles respectively.
 

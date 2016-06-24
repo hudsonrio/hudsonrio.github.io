@@ -8,10 +8,12 @@ title: Y2K Optimism?
 >Throw your hands up at me
 >All the honeys, who making money
 >Throw your hands up at me"
+
 _*Independent* Women_, Destiny’s Child 2000
 
 >"I **need** you like water
 >Like breath, like rain
+
 _I **Need** You_, Leann Rimes, 2000
 
 

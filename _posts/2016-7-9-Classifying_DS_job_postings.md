@@ -64,8 +64,11 @@ This last model was very strong in classifying my testing set (33% of data or 80
 
 Interestingly, for the first time there was a marked difference between the ordinal and binary models: the binary model actually performed less well on training data with these new features than the initial binary.
 
+
+**Binary Model**
 ![Binary Model ROC Curve, with New Features](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/binary_model_ROC.jpg?raw=true "Binary Model With New Features ROC Curve")
 
+**Ordinal Model**
 ![Ordinal Model ROC Curve, with New Features](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/ordinal_model_ROC.jpg?raw=true "Ordinal Model With New Features ROC Curve")
 
 

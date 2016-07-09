@@ -27,7 +27,7 @@ Based on the parameters of the project from General Assembly, I set out not to e
 
 Going through my dataset, I found that roughly a third of scraped job postings fell into each of these categories. I was able to access roughly 4,500 individual job postings. Because the distribution of annual salary is right skewed the calculated average salary classifies 63% of job postings as 'above-average' (our baseline accuracy), meaning if my model cannot beat guessing 'above-average' 63% of the time, it is a pretty useless model.
 
-![Disitribution of Salary within my Scraped Dataset](******** in folder****** "Distrubution of Listed Salary (Indeed.com)")
+![Disitribution of Salary within my Scraped Dataset](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/salary_hist.jpg?raw=true "Distribution of Listed Salary (Indeed.com)")
 
 ###Side Note: Binary versus Ordinal Values
 
@@ -58,15 +58,15 @@ What I found was encouraging: the first and the third features above operated in
 
 I employed an additional Grid Search to optimize my C parameter and to choose a penalty, finding an optimal C value of 0.1 and a Lasso Regression (L1) penalty.
 
-![Heatmap of Classification, with Associated Scores](htt**?raw=true "A Look Into Jupyter Notebook Output")
+![Heatmap of Classification, with Associated Scores](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/jupyter_lookin.jpg?raw=true "A Look Into Jupyter Notebook Output")
 
 This last model was very strong in classifying my testing set (33% of data or 805 values), with an Area under the Curve of 0.94, and an average F1 score of .95. Using cross-validation on the whole dataset, I found similar figures.
 
 Interestingly, for the first time there was a marked difference between the ordinal and binary models: the binary model actually performed less well on training data with these new features than the initial binary.
-:
-![Binary Model, with New Features](htt**?raw=true "A Look Into Jupyter Notebook Output")
 
-![Ordinal Model, with New Features](htt**?raw=true "A Look Into Jupyter Notebook Output")
+![Binary Model ROC Curve, with New Features](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/binary_model_ROC.jpg?raw=true "Binary Model With New Features ROC Curve")
+
+![Ordinal Model ROC Curve, with New Features](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/ordinal_model_ROC.jpg?raw=true "Ordinal Model With New Features ROC Curve")
 
 
 ##Conclusion

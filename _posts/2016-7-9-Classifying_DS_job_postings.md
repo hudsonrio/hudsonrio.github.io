@@ -3,16 +3,16 @@ layout: post
 title: Can we identify high-paying Data Science roles by scraping public job descriptions?
 ---
 
-#Classifying Compensation:
-##Employing Logistic Regression to Identify 'Above-Average' Paying Data Science Roles posted on Indeed.com
+# Classifying Compensation:
+## Employing Logistic Regression to Identify 'Above-Average' Paying Data Science Roles posted on Indeed.com
 
-##Context
+## Context
 
 Negotiating for salary can be very challenging; a little bit of knowledge about where the person across the table is coming from can go a long way. But an important element of reaching consensus is making sure that both parties are close enough at the outset that compromise is plausible. For example, for a job applicant to have an idea of the value of a given role can help he or she find an opportunity that matches or exceeds their expectations.
 
 Using scraped data from Indeed.com, I set to test my own hypotheses about what types of skills are most valued within the Data Science field. Is 'Big Data' necessary for an above-average compensation package, or do companies value the ~80% of a time data scientists spend cleaning, mining and preparing data for analysis?
 
-##Hypothesis
+## Hypothesis
 
 I believe strongly in articulating our assumptions or understandings about a given problem or dataset at the outset, because even though one could refine their hypotheses **after** interpreting the results, there is little to be learned in such image-regulation. Instead, I will use this piece to go through my (sometimes misguided) thought-process.
 
@@ -29,13 +29,13 @@ Going through my dataset, I found that roughly a third of scraped job postings f
 
 ![Disitribution of Salary within my Scraped Dataset](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/salary_hist.jpg?raw=true "Distribution of Listed Salary (Indeed.com)")
 
-###Side Note: Binary versus Ordinal Values
+### Side Note: Binary versus Ordinal Values
 
 I faced a methodological choice in my string parsing: if two job descriptions indeed matched a value within my "seniority" list, but one had only one matching word and the other had two, should they be treated the same? In other words, should two matches suggest a role is _more_ senior, or should five matches and one match be lumped together as simply a 'senior' job posting?
 
 I therefore made matching features and ran each model below with both **ordinal** features (e.g. 3 matches equals a 'seniority' score of 3, which is considered three times as senior as a seniority score of 1) and **binary** features (senior (1) or not senior (0)). Using cross-validation, I typically found that the ordinal model had more success in classifying job roles; however, I find the arguement for using the binary model to be more compelling. For specific performance of the two models, please refer to my github.
 
-###End of Side Note - Back to the Model
+### End of Side Note - Back to the Model
 
 
 I found that using the above features, I was able to produce a model with an F1 Score of .75 (a metric that combines precision and recall), or an area under the curve of .76. This suggests my first models was indeed outperforming random chance.
@@ -44,7 +44,7 @@ However, there was a major problem: for two of my three variables, the effect wa
 
 Nonetheless, seniority was strongly associated with higher compensation: when I ran the model using only seniority as a feature, neither my F1 score nor area under the ROC curve decreased drastically. However, when I included Data Skills as a feature with Seniority, my model still outperformed the one-feature model, while 'Skills' still had a negative coefficient.
 
-##Back to the Drawing Board
+## Back to the Drawing Board
 
 I revisited my "skill" and 'Big Data' list I had used to parse the job descriptions and titles in my dataset, and realized that it were more logical to restructure the lists and run the model again. First, I decided to run the test against both the description and the title, instead of just the former. I opted to create 3 new features to supplement the 'seniority' variable (with both ordinal and binary versions):
 
@@ -72,7 +72,7 @@ Interestingly, for the first time there was a marked difference between the ordi
 ![Ordinal Model ROC Curve, with New Features](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/ordinal_model_ROC.jpg?raw=true "Ordinal Model With New Features ROC Curve")
 
 
-##Conclusion
+## Conclusion
 
 There are two clear takeaways about employment in data science more broadly: if a given job posting uses words that denote seniority or that refer to 'big-data' tools in their job postings, it is very likely they will pay more than an a similar posting without that language (at least within the domain of postings on indeed.com).
 

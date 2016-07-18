@@ -8,41 +8,42 @@ title: Who Lives, Who Dies, Who Tells Your Story? (Titanic Edition)
 
 ## Context
 
-As is a rite of passage among those studying machine learning and data science as well as the intro kaggle competition entry,I spent this week grappling with the titanic log dataset. My mission? Identify, simply based on the passenger log, who would make it to a lifeboat and survive the Arctic disaster and who would spend their last moments on a door, Leo-style.
+As is a rite of passage among those studying machine learning - as well as the introductory kaggle competition entry - I spent this week grappling with the titanic log dataset. My mission? Identify, simply based on the passenger log, who would make it to a lifeboat and survive the Arctic disaster.
 
-After investigating the dataset, I decided that without extracting some features from existing data, no model would be able to accurately classify survival. I decided to make two similar sets of features: scaled features, primarily for regression techniques, and binary 'dummy' features. By splitting my features this way, I would be able to run a wide variety of models and compare their performance relative to one another when run through various machine learning algorithms.
+But it was also an opportunity to test a concept I've been grappling with: whether and when input variables (hereafter referred to as "features) should be considered categorical (and therefore binarized), and when they should be considered continuous (and, typically, scaled.)
+
+I decided to make two similar sets of features: scaled features, primarily for regression techniques, and binary 'dummy' features. By splitting my features this way, I would be able to run a wide variety of models and compare their performance relative to one another when run through various machine learning algorithms. This post explores the features I extracted in this particular problem, further exploration into categorical versus continuous features, and and exploration of "ensemble" machine learning models.
 
 ## Features I added --
 
-While every feature imaginable has likely been extracted from this dataset, I took this as an excellent opportunity to learn a little bit more about the titanic. I set to achieve the following goals
+After exploring the data, I considered what sorts of factors would _intuitively_ seem to predict survival of the titanic. I reasoned that people closer to the lifeboats would likely have a better shot of survival, as would rich folks, and finally some lucky groups (perhaps women and children?) who were either prioritized in evacuation, or simply lucky. Therefore, I set the following goals:
 
 1. Find some way to predict each person's position on the boat (what deck? left side?)
 2. Improve demographic info (including finding missing ages, and fine-tuning titles)
 3. Make meaningful groupings of the passengers
 
-The first was to figure out, as best I could, where each passenger would be. Taking a look at the cabin design, it appears that decks are assigned letters, with A being on top (probably bad luck for residents of Deck G...). Second, I figured out that odd room numbers were on the starboard (right) side of the boat. By extracting these features from the ticket, I was able to orient each passenger on the boat.
+The first was to figure out, as best I could, where each passenger would be. Taking a look at the cabin design, it appears that decks are assigned letters, with A being on top and G being the lowest level. Second, I figured out that odd room numbers were on the starboard (right) side of the boat (even numbers on the left). By extracting these features from the ticket, I was able to orient each passenger on the boat.
 
-Next, I was concerned with getting a better sense of the demographics on the boat. I looked at the way names were listed on the register, and I noticed two things I could extract. First, I noticed that many women had names listed in parentheses, which I figured out were their maiden names. By checking for these names, I created a feature for whether a woman was remarried. Next, I noticed that imbedded in each name in a consistent format was that person's title.
+Next, I was concerned with getting a better sense of the demographics on the boat. I looked at the way names were listed on the register, and I noticed two things I could extract. First, I noticed that many women had names listed in parentheses, which I figured out were their maiden names. By checking for these names, I created a feature for whether a woman was married. Next, I noticed that imbedded in each name in the log was that person's title, which I quickly extracted.
 
-Once I had successfully found each title, I grouped them into 7 categories. The first four were ordered by age and gender (eg. Mrs, Ms., Mr. and Master) and the final two were by profession (Reverend, Doctor, and Military which encompassed all such titles). Some titles (such as "Jonkheer") did not cleanly fit into other categories, but with some research I was able to group them into these previous categories (Jonkeer is a male dutch honorific, and was therefore grouped with Mr.).
+Once I had successfully found each title, I grouped them into 7 categories. The first four were ordered by age and gender (eg. Mrs, Ms., Mr. and Master) and the final three were by profession (Reverend, Doctor, and Military). Some titles (such as "Jonkheer") did not cleanly fit into other categories, but with some research I was able to group them into these previous categories (Jonkeer is a male dutch honorific, and was therefore grouped with Mr.).
 
-I cleaned the gender feature, and created a feature that combined the "Number of Siblings" and "Number of Parents" columns in the dataset into a feature that simply expressed the number of family members somebody had on the boat (and likely the number of people concerned if they would survive). Finally, I scaled the ticket price for the scaled (regression) features, and created ticket price tiers for my binary features.
+I cleaned the gender feature, and created a feature that combined the "Number of Siblings" and "Number of Parents" columns in passenger log  into a feature that simply expressed the number of family members somebody had on the boat (and likely the number of people concerned if a given person would survive). Finally, I scaled the ticket price for the scaled (regression) features, and created ticket price tiers for my binary features.
 
 ## Imputing Missing Ages
 
 Now that I had a more developed set of features, I returned to the biggest weakness I noticed in my dataset: almost 20% of my dataset had no ages.
 
-Hist of ages I have!!
+![Histogram Distribution of Ages with Missing Values](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/ages_before_clean.png?raw=true "Distribution of Ages")
+
 
 At first, I considered three options:
 
-1. simply imputing the median age to all the people for whom our dataset had no ages,
-1. dropping each of these passengers with no ages from the dataset and keeping Age as a feature
+1. simply imputing the median age (28) to all the people for whom our dataset had no ages
+1. dropping each of these passengers with no ages (177 of my training set of 891) from the dataset and keeping Age as a feature
 1. dropping age as a feature
 
-My first option was inadequate because it meaningfully changed the distribution of age across the boat (see histogram below - note the peak around ages 28-29, the median value).
-
-![Image of Historgraph with bad ages]
+My first option was inadequate because it meaningfully changed the distribution of age across the boat. Look at the histogram above - about 3.5% of people on the boat were 28; however, by imputing ages, this number would rise to over a fifth of the boat. This would have meaningfully changed how age behaved as a featue, likely hurting out model's predictions.
 
 The second and third options were not reasonable for similar reasons: I had a limited number of features, and felt that dropping age or roughly 20% of my dataset would lead to a loss of accuracy that I could not make up no matter how sophisticated and well-tuned my model.
 
@@ -50,17 +51,22 @@ Instead, I settled on leaning on the work I had already done - extracting title 
 
 ## Models I used and their performance--
 
-My strategy was to train each model on the full training set, and evaluate their success using cross validation (using a stratified, shuffled Kfold method) on the entire dataset (using R^2 as our scoring function) were. This allowed me to hone in on two techniques which I found stood out in their accuracy.
+Below is a confusion matrix, using logistic regression with no penalty. This gives me a sense of a baseline: if a model cannot beat this performance, it is unlikely to be valuable for my purposes.
 
-- grid search optimized Logistic Regression
-- Bagging (with a basic decision tree model underneath)
+![Confusion Matrix (Test Data) Using Logistic Regression with no Penalty](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/confusion_matrix_log.png?raw=true "Basic Confusion Matrix")
+
+
+My strategy was to train each model on the full training set, and evaluate their success using cross validation (using a stratified, shuffled Kfold method) on the entire dataset (using F1 Score as our scoring function). This allowed me to hone in on two techniques which I found stood out in their accuracy.
+
+- Grid search-optimized logistic regression
+- Bagging (with a basic decision tree model)
 
 Near the end of this piece, I will return to explore why these models outperformed the others.
 
 
 ## Dummies versus Scaled features
 
-As mentioned, I thought this project would be an excellent opportunity to compare the efficacy of binarized data (using sparse matrices) versus using continuous values, and constructed two sets of features to compare these two approaches in the context of a many-featured model.
+As mentioned, I thought this project would be an excellent opportunity to compare the efficacy of binarized data  versus using continuous values, and constructed two sets of features to compare these two approaches in the context of a many-featured model.
 
 ### A quick aside: if you have no idea about what I mean about binarized data...
 
@@ -97,8 +103,7 @@ Nonetheless, I prepared fare (among my other features) in both ways, so I could 
 
 ## How did continuous and categorically cleaned X values effect the accuracy of various models?
 
-
-![PUT MODEL OUTPUT IMAGE HERER!!]
+![Table of Model Predictive Accuracy (Cross-validated F1 Scores)](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/model_output_ranked.png?raw=true "Cross-validated F1 Scores")
 
 The table above is the ranked output of each of these models, ranked by their F1 score (which is a composite score of precision and accuracy of both prediction classes).
 
@@ -111,31 +116,32 @@ The primary takeaway is that neither scaled or binarized data is inherently bett
 
 Two models stood out: Bagging (which is an ensemble method that uses decision_trees), and Logistic Regression (optimized by grid search).
 
+Here are visualizations of the ROC curves of the Bagging model. The area under the curve is a good way for assessing the predictiveness of the model:
 
-Here are visualizations of their ROC curves (the area under the curve is a good way for assessing the predictiveness of the model on the data):
-
-![ROC Curves]
+![ROC Curve for Bagging Trees Model](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/bagging_tree_roc.png?raw=true "ROC Curve for Bagging Trees Model")
 
 
 The big challenge in this was in the relative weight of the 30 features that I extracted from the dataset. It appears that a critical element in this dataset was using bagging, or training our model (in this case using both KNN and a basic decision tree algorithm) on a number of randomly selected samples (with replacement) of the input features, and aggregating the results of these models helped ensure appropriate weighting of each feature.
 
 We see a similar phenomena in the optimized logistic regression, where we were using a ridge penalty, which is best suited for problems where the relative weighting of a number of features is important.
 
-The decision tree model yielded an output of the relative value of each feature, and I noticed that the relative importance of features was bimodal: two features accounted for roughly 50% of the assigned importance (age and fare paid), while the other 28 features accounted for the other ~50% of importance in the model
+The decision tree model yielded an output of the relative value of each feature, and I noticed that the relative importance of features was bimodal: two features (scaled age and scaled fare) accounted for roughly 50% of the assigned importance (age and fare paid), while the other 28 features accounted for the other ~50% of importance in the model
 
-![feature importance plot in Seaborn from decision tree, NOT gradient boosted]
+![Graph of Relative Feature Importance: Age and Fare stand out on the Right](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/feature_importance.png?raw=true "Feature Importance Plot - Age and Fare Dominate")
 
 This explains why there was a lot of consensus in my models in reaching classification accuracy levels around 75%, but why getting to 82% was very challenging: most of the models were driven primarily by age and scale, but it was the ability to best employ the other features that I was able to marginally improve the model.
 
 
 ## Next steps
-One feature I did not have time to clean and include in the model is port of Embarkation. While I imagine it will be correlated with the fare paid, it may add some additional improvement to the model (although I suspect it will be marginal).
+One feature I did not have time to clean and include in this model is Port of Embarkation. While I imagine it will be correlated with the fare paid, it may add some additional improvement to the model (although I suspect it will be marginal).
 
 Next, I would use recursive feature selection to identify which features I need to include in my model, or could live without. Currently, my model may contain features that are unnecessary.
 
-Finally, I would spend time 'pruning' my decision tree models, passing optional parameters into my bagging tree model using grid search.
+This analysis did not include an implementation of a Support Vector Machine model, but this is undoubtedly a technique I would add in future research.
+
+Finally, I would spend time 'pruning' my decision tree models, passing optional parameters into my bagging tree model using grid search. For all these revision, please check out my final model submission to Kaggle!
 
 
 ##Conclusion
 
-Using an ensemble method (bagging with a decision tree) and a grid search optimized logistic ridge (L2 penalty) regression model, I was able to classify survivors on the titanic with an F1 score just under 83%. The vast majority of my time was spent cleaning my data and implementing features.
+Using an ensemble method (bagging with a decision tree) and a grid search optimized logistic ridge (L2 penalty) regression model, I was able to classify survivors on the titanic with an F1 score just under 83%. The majority of my time was spent cleaning my data and implementing features.

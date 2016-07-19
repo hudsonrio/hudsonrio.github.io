@@ -3,7 +3,6 @@ layout: post
 title: Can we identify high-paying Data Science roles by scraping public job descriptions?
 ---
 
-# Classifying Compensation:
 ## Employing Logistic Regression to Identify 'Above-Average' Paying Data Science Roles posted on Indeed.com
 
 ## Context

@@ -3,7 +3,7 @@ layout: post
 title: Who Lives, Who Dies, Who Tells Your Story? (Titanic Edition)
 ---
 
-# Classifying Survival:
+
 ## Employing Various Classification Techniques to Identify Titanic Survivors, Based on Passenger Log
 
 ## Context

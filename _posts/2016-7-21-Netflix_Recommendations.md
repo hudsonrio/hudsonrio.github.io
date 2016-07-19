@@ -1,18 +1,17 @@
 ---
 layout: post
-title: Who Lives, Who Dies, Who Tells Your Story? (Titanic Edition)
+title: Which Movies Should Netflix Acquire, and Why?
 ---
 
-# Classifying Survival:
-## Employing Various Classification Techniques to Identify Titanic Survivors, Based on Passenger Log
+# Machine Learning 101: Recommending Movies on Netflix
+## Identifying High-Upside Movie Acquisitions for Netflix
 
 ## Context
 
-As is a rite of passage among those studying machine learning - as well as the introductory kaggle competition entry - I spent this week grappling with the titanic log dataset. My mission? Identify, simply based on the passenger log, who would make it to a lifeboat and survive the Arctic disaster.
+As this project was more open-ended than any of the previous posts, this post will focus more on the methodology - why I made the choices I did - than the details of the implementation. 
 
-But it was also an opportunity to test a concept I've been grappling with: whether and when input variables (hereafter referred to as "features) should be considered categorical (and therefore binarized), and when they should be considered continuous (and, typically, scaled.)
-
-I decided to make two similar sets of features: scaled features, primarily for regression techniques, and binary 'dummy' features. By splitting my features this way, I would be able to run a wide variety of models and compare their performance relative to one another when run through various machine learning algorithms. This post explores the features I extracted in this particular problem, further exploration into categorical versus continuous features, and and exploration of "ensemble" machine learning models.
+From reddit:
+"Metacritic tells you how good it is while RT tells you the chances of you liking."
 
 ## Features I added --
 

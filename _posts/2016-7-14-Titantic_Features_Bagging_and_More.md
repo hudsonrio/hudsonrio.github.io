@@ -4,7 +4,7 @@ title: Who Lives, Who Dies, Who Tells Your Story? (Titanic Edition)
 ---
 
 
-## Employing Various Classification Techniques to Identify Titanic Survivors, Based on Passenger Log
+> Employing Various Classification Techniques to Identify Titanic Survivors, Based on Passenger Log
 
 ## Context
 

@@ -4,7 +4,7 @@ title: Which Movies Should Netflix Acquire, and Why?
 ---
 
 
-## Identifying High-Upside Movie Acquisitions for Netflix
+> Identifying High-Upside Movie Acquisitions for Netflix
 
 ## Context
 

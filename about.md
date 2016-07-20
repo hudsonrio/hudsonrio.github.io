@@ -4,13 +4,11 @@ title: About
 permalink: /about/
 ---
 
-## A snapshot of Hudson
-
 I am fascinated by data and the stories it can tell.
 
-I have experience with Python, including numerous packages such as scikit-learn, Pandas, Numpy/Scipy, Seaborn in order to construct, evaluate and tune both supervised and unsupervised models. I was the Analytics Product Manager (former Operations Team Lead) at [Mighty](https://mighty.com/) before beginning my a Data Science Bootcamp at General Assembly in June 2016. 
+I have experience with Python, including numerous packages such as scikit-learn, Pandas, Numpy/Scipy, Seaborn in order to construct, evaluate and visualize output from both supervised and unsupervised models. I am comfortable with querying in PostgreSQL. I was the Analytics Product Manager (former Operations Team Lead) at [Mighty](https://mighty.com/) before beginning my a Data Science Bootcamp at General Assembly in June 2016.
 
-I am a self-identified Effective Altruist who believes in "earning to give", as well as the importance of direct service. In the past, I organized [TEDx conferences](http://sites.middlebury.edu/tedx/), interned at [GiveWell](http://www.givewell.org/), and volunteered for Obama for America in 2008 and 2012. I am passionate about traveling, and became comfortable with Spanish while studying abroad in Cuba in 2013 (about which I wrote my Senior Thesis). I am a voracious reader, and an avid basketball player and fan.
+I am a self-identified Effective Altruist who believes in "earning to give", as well as the importance of direct service. In the past, I organized [TEDx conferences](http://sites.middlebury.edu/tedx/), interned at [GiveWell](http://www.givewell.org/), and volunteered for Obama for America in 2008 and 2012. I am a [MiddCORE graduate](http://middcore.middlebury.edu/), an International Studies & Political Science Major, I am passionate about traveling, and became comfortable with Spanish while studying abroad in Cuba in 2013 (about which I wrote my Senior Thesis). I am a voracious reader, and an avid basketball player and fan.
 
 I am currently Brooklyn-based, and am a born and bred New Yorker.
 
@@ -23,6 +21,7 @@ This blog is intended as a way to share the projects I am working on, but also a
 [hucavanagh@gmail.com](mailto:hucavanagh@gmail.com)
 [LinkedIn](https://www.linkedin.com/in/hudsoncavanagh)
 [Github](https://github.com/hudsonrio/)
+[Kaggle](https://www.kaggle.com/hudsonrio)
 [Twitter](https://twitter.com/HudsonCavanagh)
 
 

@@ -1,8 +1,9 @@
 ---
 layout: post
-title: What is 'Data Science'? Why would a Political Science grad start coding?
+title: Why would a Political Science graduate start coding?
 ---
-## My road to Data Science
+> My road to Data Science
+
 Around a year ago, I was working in Operations at a startup called [Mighty](https://mighty.com/) (you might still see my face on their website). After working my way through the ranks in sales, I got the chance to work on our operational processes to rehaul, refine and document our standard operating procedure. My primary asset, I realized, in figuring out how to best achieve this goal was company **data**.
 
 I hacked my way using google spreadsheets, periscope.io (and some basic ability to query our postgreSQL database), to contribute to our 'innovation pipeline': a list of prioritized hypotheses, a process for vetting methodology, and a systematic approach to documenting learnings.

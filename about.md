@@ -19,11 +19,15 @@ This blog is intended as a way to share the projects I am working on, but also a
 
 ### Contact me
 
-[hucavanagh@gmail.com](mailto:hucavanagh@gmail.com)\n
-[LinkedIn](https://www.linkedin.com/in/hudsoncavanagh)\n
-[Github](https://github.com/hudsonrio/)\n
-[Kaggle](https://www.kaggle.com/hudsonrio)\n
-[Twitter](https://twitter.com/HudsonCavanagh)\n
+[hucavanagh@gmail.com](mailto:hucavanagh@gmail.com)
+
+[LinkedIn](https://www.linkedin.com/in/hudsoncavanagh)
+
+[Github](https://github.com/hudsonrio/)
+
+[Kaggle](https://www.kaggle.com/hudsonrio)
+
+[Twitter](https://twitter.com/HudsonCavanagh)
 
 
 #### Hudson's Archive
@@ -32,5 +36,4 @@ This blog is intended as a way to share the projects I am working on, but also a
 
 [Warm Glow Archives: 10 More Op-Eds I wrote in College](https://middleburycampus.com/article-tags/warm-glow/)
 
-
-[Honors Thesis on Cuban Human Capital Exportation (excuse the typo)](http://www.middlebury.edu/academics/igs/about/las/recent-student-theses)
+[Honors Thesis on Cuban Human Capital Exportation (.pdf available upon request)](http://www.middlebury.edu/academics/igs/about/las/recent-student-theses)

@@ -56,7 +56,7 @@ Thanks to input from some of my teammates (thanks to Darlin and Ish especially f
 
 #### 3) It will be soul-crushingly boring
 
-* I had the impression that 'Computer Science' was an extremely broad track which taught students to have R2D2-style neural bonds with computers, allowing these enlightened individuals to do everything from making websites pretty, to making amazon recommendations, to search algorithms and dynamic interfaces. **I now understand that 'coding' is a highly specialized group of tasks, functions and roles which allow for a similar diversity of specialization as the social science field as a whole** (for example). Even though neither flash, nor front-end development are particularly appealing to me, I did not have a good mental image of the extent to which one can specialize.
+* I had the impression that 'Computer Science' was an extremely broad track which taught students to have R2D2-style neural bonds with computers, allowing these enlightened individuals to do everything from making websites pretty, to making amazon recommendations, to search algorithms and dynamic interfaces. **I now understand that 'coding' is a highly specialized group of tasks, functions and roles which allow for a similar diversity of specialization as the social science field as a whole** (for example). Even though neither Flash, nor front-end development are particularly appealing to me, I did not have a good mental image of the extent to which one can specialize.
 
 ![Computer Science is Easy!](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_why_ds/R2.png?raw=true)
 

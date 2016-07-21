@@ -71,7 +71,7 @@ Left with ~ 3,500 observations on which to train my model, I ran three models: a
 
 ![Feature Importance ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj6/feature_importance.png?raw=true)
 
-I actually re-ran the same model without imdb_rating, to see what would happen, but the same features crept to the top. It is clear that imdb_rating and other various scoring mechanisms are collinear, which is why imdb_rating accounted for the majority of the model's predictive value. On the decision tree model excluding the imdb metric, tomato_rating became the most important feature with a relative importance of .50.
+I re-ran the same model without imdb_rating, to see what would happen, but the same features crept to the top. It is clear that imdb_rating and other various scoring mechanisms are collinear, which is why imdb_rating accounted for the majority of the model's predictive value. On the decision tree model excluding the imdb metric, tomato_rating became the most important feature with a relative importance of .50.
 
 The two groups of non-aggregated score features (e.g. excluding IMDB rating) which stood out in the analysis where:
 

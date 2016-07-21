@@ -4,13 +4,13 @@ title: Why would a Political Science graduate start coding?
 ---
 > My road to Data Science
 
-Around a year ago, I was working in Operations at a startup called [Mighty](https://mighty.com/) (you might still see my face on their website). After working my way through the ranks in sales, I got the chance to work on our operational processes to rehaul, refine and document our standard operating procedure. My primary asset, I realized, in figuring out how to best achieve this goal was company **data**.
+Around a year ago, I was working in Operations at a startup called [Mighty](https://mighty.com/) (you might still see my face on their website). After working my way through the ranks in sales, I got the chance to work on our operational processes to rehaul, refine and document our standard operating procedure. My primary asset, I realized, in figuring out how to best achieve these goals was **data**.
 
 I hacked my way using google spreadsheets, periscope.io (and some basic ability to query our postgreSQL database), to contribute to our 'innovation pipeline': a list of prioritized hypotheses, a process for vetting methodology, and a systematic approach to documenting learnings.
 
 However, our analytical capacity - we had a team of passionate, young, curious, inexperienced folks - far exceeded the data we had at hand, and the rate we could gather data through controlled experimentation. From our dataset of users that was hopelessly drowned in user-entered noise from an earlier era; for example, we had countless responses to questions like "Who is your attorney?" containing everything from benign misspellings to misplaced vitriol ("WHY ISN'T THIS WORKING????"). Our sales KPI depended on consistent data entry in 2 disconnected CRMs (which never happened consistently). Because we could not trust these KPIs because of lack of data entry, a vicious cycle emerged: nobody updated Salesforce consistently, because they had next to no incentive to do so, meaning our data was useless.
 
-!["I'll Send You Those Growth Projections This Week"](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/crm.png?raw=true)
+!["I'll Send You Those Growth Projections This Week"](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_why_ds/crm.png?raw=true)
 
 
 
@@ -27,7 +27,7 @@ Thanks to input from some of my teammates (thanks to Darlin and Ish especially f
 
 **I am no coder. I don't have the background, I'm not smart enough, and it will be soul-crushingly boring.**
 
-![Command Line, First Day ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/coders_only.jpg?raw=true)
+![Command Line, First Day ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_why_ds/coders_only.jpg?raw=true)
 
 ## Unpacking my Preconceptions about Computer Science:
 
@@ -43,7 +43,7 @@ Thanks to input from some of my teammates (thanks to Darlin and Ish especially f
 
 * I assumed, as I believe many do, that computer programmers are in some ways an order of magnitude more intelligent than most (specifically me). **I imagined that in the same way that one might never be competitive with Tiger Woods in golf without picking the game up at age 5, if one were not coding throughout their life, catching up to even middle-tier coders would be nearly impossible**.
 
-![Full Stack Dev](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/tiger.png?raw=true)
+![Full Stack Dev](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_why_ds/tiger.png?raw=true)
 
 
 * I have since revised this assumption: while full-stack developers and true 'Data Scientists' (that is, those who develop data analysis techniques or who deal with advanced machine learning, or who are otherwise highly specialized) are an order of magnitude better at what they do than a standard software engineer or data analyst. However, I now see this difference as **fundamentally a function of experience, rather than of 'talent' or 'intelligence'**. There may be some intellectual cut off point, but principally, some people are excellent at these skills because they put in their "10,000 hours." One does not have to reach 10,000 hours to be employable in Data Science, because a) **teams can compensate for shortcomings of individual teammates** and b) because **somebody has already approached most problems out there, and probably did a decent job, which you can emulate** and learn from.
@@ -56,14 +56,14 @@ Thanks to input from some of my teammates (thanks to Darlin and Ish especially f
 
 * I recall a close friend of mine who majored in Computer Science spending late nights just about every night in college. At my alma matter (Middlebury College), there were few computer science majors with little interaction with other social-science driven majors. Often, CS majors were less visible socially. **This lead to my biased perception that only introverts and the technologically inclined (see 'nerds') types can be successful coding** whereas I now believe that these are simply **a reflection of self-selection bias within the field**.
 
-![Cool Kids Code](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/cool_kids.png?raw=true)
+![Cool Kids Code](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_why_ds/cool_kids.png?raw=true)
 
 
 * I had the impression that 'Computer Science' was an extremely broad track which taught students to have  R2D2-style neural bonds with computers, allowing these enlightened individuals to do everything from making websites pretty, to making amazon recommendations, to search algorithms and dynamic interfaces. **I now understand that 'coding' is a highly specialized group of tasks, functions and roles which allow for a similar diversity of specialization as the social science field as a whole** (for example). Even though neither flash, nor front-end development are particularly appealing to me, I did not have a good mental image of the extent to which one can specialize.
 
 * Last, **I undervalued the sense of achievement when one completes a project**. It feels really good in its own right to make something "work". But the feeling of sharing a project with somebody else where it is helpful (to them or to your team as a whole) combines the satisfaction of contributing to a team, and the rush of discovery. As a basketball player, the most universal analogy I can draw is that producing a valuable model is like being passed the ball and making a game-winning shot. You feel both triumphant individually, and included in something bigger: the success of your team. It feels really good.
 
-![The GOAT](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/jordan.jpg?raw=true)
+![The GOAT](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_why_ds/jordan.jpg?raw=true)
 
 
 ## What should I keep in mind if I only skimmed the part above? Its 2016 and long-form blog posts are dead. Listicle plz?

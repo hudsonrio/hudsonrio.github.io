@@ -73,12 +73,27 @@ Left with ~ 3,500 observations on which to train my model, I ran three models: a
 
 I actually re-ran the same model without imdb_rating, to see what would happen, but the same features crept to the top. It is clear that imdb_rating and other various scoring mechanisms are collinear, which is why imdb_rating accounted for the majority of the model's predictive value. On the decision tree model excluding the imdb metric, tomato_rating became the most important feature with a relative importance of .50.
 
-The Random Forest model had similar feature importance, but performed worse (R2 of .63 for our predicted values using cross validation) because it did not lean so much on the most important feature which, in this case, was the optimal strategy for predicting Tomato User scores.
+The two groups of non-aggregated score features (e.g. excluding IMDB rating) which stood out in the analysis where:
+
+1. Tomato User Reviews & IMDB votes
+2. Years Between Theater Release and DVD Released
+
+While neither of these groups were valued very highly as features, they did add precision to the model and should be evaluated  in subsequent reviews for their relative importance, especially dropping the various aggregated scores.
+
+The first suggests that mere engagement with a movie is likely to predict success. This suggests other features, like frequency a movie is mention on social media or in the traditional media, may also predict popularity.
+
+The second is slightly more complicated, but suggests that the time frame between initial public release (in most cases, in theaters) and the release of the DVD is a good way to understand the dynamics of a movie. For example, if this range is small, the movie is likely a straight-to-DVD style movie; in contract, long periods likely suggest a resurgence of popularity for a movie that may not have warranted a strong public reaction immediately.
+
 
 > Decision Tree optional parameters: min_samples_leaf=10, min_samples_split=3, max_depth=7
+
+
+## Conclusion
+
 
 ![Predicted Versus Actual Values (R2 = .76) ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj6/dt_actual_predicted.png?raw=true)
 
 
+The model was able to explain roughly 75% of a given user score on rotten tomatoes, which we choose as our target because it was the most relevant metric for assessing whether the acquisition of a given movie would contribute to Netflix user "happiness." This is because the user score is the proportion of users that classified a given movie as good ("fresh"), out of those who rated each movie (rather than the average score of each respondent).
 
-## Conclusion
+Next steps include fine-tuning the model, including removing some features (some tomato-supplied features, as well as Metascore) to see how our accuracy is effected. Once this analysis is complete, Netflix can employ this model when evaluating potential acquisitions to predict "net happiness boost" among Netflix users.

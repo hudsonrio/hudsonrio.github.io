@@ -55,10 +55,30 @@ Regarding the second, this "small-screen" effect does not seem to have dissuaded
 
 !["An all-around disappointment, Marco Polo is less entertaining than a round of the game that shares its name."](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj6/marco_polo.jpg?raw=true "Marco Polo")
 
-Therefore, I will be constructing a Random Forest Model that attempts to predict what I will refer to as "popcorn score," or more precisesly the measure of Rotten Tomatoes users who classify a given movie as "Fresh" (divided by the number of respondents).
+Therefore, I will be constructing a range of Decision Tree/Random Forest Models that attempt to predict what I will refer to as "popcorn score," or more precisesly the measure of Rotten Tomatoes users who classify a given movie as "Fresh" (divided by the number of respondents).
+
+### Features Sidebar
+
+One of the greatest challenges in these models is in chooising between which features to retain, and which to drop. Fortunately, my dataset was upwards of 7,000 observations, so I was able to comfortably to retain a strong sample size despite dropping some values. As you can see on the plot below, however, some categories had a large number of missing values (boxoffice especially), which forced me to drop it as a feature from my model. Metascore had 3608 missing values, but because I saw it as a key feature in the sense that I wanted to test my hypothesis that critical acclaim was distinct (although somewhat informative of) popular opinion. In subsequent analysis, I might drop Metascore from my analysis, however. For more on the feat
+
+![Used Features with Low Number of Null Values](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj6/feature_nulls.jpg?raw=true)
+
 
 ## Implementing the Model
 
-(Work in progress)
+Left with ~ 3,500 observations on which to train my model, I ran three models: a basic Decision Tree model, a Random Forests Model, and a Bagging Model. Here were the features that stood out in terms of importance:
+
+
+![Feature Importance ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj6/feature_importance.png?raw=true)
+
+I actually re-ran the same model without imdb_rating, to see what would happen, but the same features crept to the top. It is clear that imdb_rating and other various scoring mechanisms are collinear, which is why imdb_rating accounted for the majority of the model's predictive value. On the decision tree model excluding the imdb metric, tomato_rating became the most important feature with a relative importance of .50.
+
+The Random Forest model had similar feature importance, but performed worse (R2 of .63 for our predicted values using cross validation) because it did not lean so much on the most important feature which, in this case, was the optimal strategy for predicting Tomato User scores.
+
+> Decision Tree optional parameters: min_samples_leaf=10, min_samples_split=3, max_depth=7
+
+![Predicted Versus Actual Values (R2 = .76) ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj6/dt_actual_predicted.png?raw=true)
+
+
 
 ## Conclusion

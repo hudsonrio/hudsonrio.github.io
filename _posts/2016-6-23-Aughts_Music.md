@@ -4,40 +4,42 @@ title: Y2K Optimism?
 ---
 
 
->"All the women, who are *independent*
->Throw your hands up at me
->All the honeys, who making money
->Throw your hands up at me"
+> "All the women, who are *independent*
+> Throw your hands up at me
+> All the honeys, who making money
+> Throw your hands up at me"
 
 _*Independent* Women_, Destiny’s Child 2000
 
->"I **need** you like water
->Like breath, like rain
+> "I **need** you like water
+> Like breath, like rain
 
 _I **Need** You_, Leann Rimes, 2000
 
 
-#Pop Theory: Neutral Song Titles are Boring
+# Pop Theory: Neutral Song Titles are Boring
 
-##Context
+## Context
 
 The early 2000s were pretty angsty. We had just stepped into the 21st century and, frankly, popular music was both pretty bad (Smash Mouth) but also extremely memorable (“Hey Now, You’re an Allstar, Get Your Game on…”). It was the best of times, it was the worst of times.
 
-##Hypothesis
+## Hypothesis
+
 
 I imagined strongly emotional music content in this period would tend to stand out to the public at large. Second, I made the assumption that track titles reflect the emotional content of each song (at least over a large dataset). Armed with a dataset of popular music from the turn of the millennium, I set to test the hypothesis that **song titles associated with notably positive OR notably negative themes would be more popular than emotionally neutral titles**, but that the effect size would be greater for positive songs. In more technical terms, _my null hypothesis is that the positive or negative association of a track title is totally unrelated to chart success_.
 
-##Some Words of Caution about Extrapolation
+
+## Some Words of Caution about Extrapolation
 I wondered if this question should also help us understand the post-Y2K American psyche: do our tastes reveal something about our national character as an imagined community? Were our tastes as a nation optimistic or pessimistic? While these questions are interesting, one should be cautious extrapolating any conclusions I reach in this piece, given that my analysis does not include a baseline to compare how emotional content in song titles has changed over time. Indeed, my findings should be confined to the relative impact of positive and negative song titles in America around Y2K.
 
-##Methodology
+## Methodology
 First, I looked at the relationship between how long, and to what extent a song was popular, finding they are correlated.
 
-![Chart Showing Association Between Duration and Magnitude of Popularity](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks.jpg?raw=true "Popularity Duration and Magnitude")
+![Chart Showing Association Between Duration and Magnitude of Popularity](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/blog%20posts/images_proj2/avgbb_weeks.jpg?raw=true "Popularity Duration and Magnitude")
 
 This lead to the construction of  a combination metric, which I named "Billboard ratio": the duration of the songs appearance on the billboard 100, divided by its average position. While this is an imperfect metric, I used it to evaluate the popularity of songs hereafter (except where noted otherwise).
 
-![Same Chart as Above, with a Jitter Applied to smooth the relationship](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/avgbb_weeks_jitter.jpg?raw=true "Popularity Duration and Magnitude jittered")
+![Same Chart as Above, with a Jitter Applied to smooth the relationship](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/blog%20posts/images_proj2/avgbb_weeks_jitter.jpg?raw=true "Popularity Duration and Magnitude jittered")
 
 Using this metric, I decided to look at the most popular songs in the dataset, to see if there were any trends. Here are some of the most popular songs in the data:
 
@@ -50,18 +52,19 @@ Hot Boyz                              Elliott, Missy "Misdemeanor"
 
 Next, I used a publicly funded dataset made available by Harvard that classifies nearly every word in English by a number of categories, including positive or negative.  I compared each song title to these lists, classifying each song by how positive or negative the title was to classify, as seen below.
 
-##Analysis
+## Analysis
 
 Some patterns emerged once I had crunched the numbers: it appeared that both strongly positive or negative songs tended to out perform neutral songs, as illustrated by the following bar charts:
 
-![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/trackpos_bb_ratio_bar.jpg?raw=true "Positivity and Popularity")
+![More Positive Songs Tend to Be Popular, But High STDV](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/blog%20posts/images_proj2/trackpos_bb_ratio_bar.jpg?raw=true)
 
 
-![Popular Songs Stay on Charts Longer?](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/track_pos_weeks_jointplot.jpg?raw=true "Popularity Duration and Positivity")
+
+![Popular Songs Stay on Charts Longer?](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/blog%20posts/images_proj2/track_pos_weeks_jointplot.jpg?raw=true "Popularity Duration and Positivity")
 
 Because the data is not continuous, a bar chart is a better fit for this visualization.
 
-![Negative Songs More Popular](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/images_proj2/trackneg_bb_ratio_bar.jpg?raw=true "Negativity and Popularity")
+![Negative Songs More Popular](https://github.com/hudsonrio/hudsonrio.github.io/blob/master/images/blog%20posts/images_proj2/trackneg_bb_ratio_bar.jpg?raw=true "Negativity and Popularity")
 
 Based on these charts, I was unable to come to a definitive conclusion about whether increasingly polarized emotional content did indeed lead to increased (or decreased) popularity. I ran 2 paired T-Tests, comparing neutral songs to negative and positively associated chart titles respectively.
 

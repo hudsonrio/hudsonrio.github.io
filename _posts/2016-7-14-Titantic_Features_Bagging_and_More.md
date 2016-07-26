@@ -10,15 +10,15 @@ title: Who Lives, Who Dies, Who Tells Your Story? (Titanic Edition)
 
 As is a rite of passage among those studying machine learning - as well as the introductory kaggle competition entry - I spent this week grappling with the titanic log dataset. My mission? Identify, simply based on the passenger log, who would make it to a lifeboat and survive the Arctic disaster.
 
-But it was also an opportunity to test a concept I've been grappling with: whether and when input variables (hereafter referred to as "features) should be considered categorical (and therefore binarized), and when they should be considered continuous (and, typically, scaled.)
+But it was also an opportunity to test a concept I've been grappling with: whether and when input variables (hereafter referred to as "features") should be considered categorical (and therefore binarized), and when they should be considered continuous (and, typically, scaled.)
 
-I decided to make two similar sets of features: scaled features, primarily for regression techniques, and binary 'dummy' features. By splitting my features this way, I would be able to run a wide variety of models and compare their performance relative to one another when run through various machine learning algorithms. This post explores the features I extracted in this particular problem, further exploration into categorical versus continuous features, and and exploration of "ensemble" machine learning models.
+I decided to make two similar sets of features: scaled features, primarily for regression techniques, and binary 'dummy' features (you will recall I did a similar technique in my first post about emotional song content). By splitting my features this way, I would be able to run a wide variety of models and compare their performance relative to one another when run through various machine learning algorithms. This post explores the features I extracted in this particular problem, further exploration into categorical versus continuous features, and and exploration of "ensemble" machine learning models.
 
 ## Features I added --
 
-After exploring the data, I considered what sorts of factors would _intuitively_ seem to predict survival of the titanic. I reasoned that people closer to the lifeboats would likely have a better shot of survival, as would rich folks, and finally some lucky groups (perhaps women and children?) who were either prioritized in evacuation, or simply lucky. Therefore, I set the following goals:
+After exploring the data, I considered what sorts of factors would _intuitively_ seem to predict survival of the titanic. I reasoned that people closer to the lifeboats would likely have a better shot of survival, as would rich folks, and finally groups  who were either prioritized in evacuation (perhaps women and children?). Therefore, I set the following goals:
 
-1. Find some way to predict each person's position on the boat (what deck? left side?)
+1. Find some way to predict each person's position on the boat (what deck? which side?)
 2. Improve demographic info (including finding missing ages, and fine-tuning titles)
 3. Make meaningful groupings of the passengers
 
@@ -142,6 +142,18 @@ This analysis did not include an implementation of a Support Vector Machine mode
 Finally, I would spend time 'pruning' my decision tree models, passing optional parameters into my bagging tree model using grid search. For all these revision, please check out my final model submission to Kaggle!
 
 
-##Conclusion
+## Conclusion
 
 Using an ensemble method (bagging with a decision tree) and a grid search optimized logistic ridge (L2 penalty) regression model, I was able to classify survivors on the titanic with an F1 score just under 83%. The majority of my time was spent cleaning my data and implementing features.
+
+
+### One Week Later - Returning to the Models
+
+After presenting this model in class, I was struck by a methodological decision that two students in the class - both of whom I have a lot of respect for, intellectually and otherwise - to drop 'age' as variable, rather than imputing values. I realized that my focus on extracting titles (which I used to impute ages) would likely perform just as well had I simply dropped age as a feature.
+
+I re-ran the analysis, and found essentially no difference in the F1 score of either my Random Forest or Decision Tree models. Indeed, when I investigated feature importance in these models, it was clear that titles rose significantly in importance. It appears their reluctance to impute values was valid: if my accuracy was essentially the same by imputing unverified data, it my new version of the model without age that I would use for future extrapolation (and for Kaggle).
+
+
+![Graph of Relative Feature Importance: Titles have Compensated for Age Fare stand out on the Right](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/feature_importance_noage.png?raw=true "Feature Importance Plot - Age and Fare Dominate")
+
+I also explored this feature importance further by cross-referencing the coefficients in my logistic regression model, finding that port_cabin had a consistently positive coefficient, while starboard did not. Additionally, there was the strongest negative coefficient for Cabin 'C' compared to survival, suggesting it was the level to have a room on.

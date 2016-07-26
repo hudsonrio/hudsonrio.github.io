@@ -1,51 +1,53 @@
 ---
 layout: post
-title: Can we identify high-paying Data Science roles by scraping public job descriptions?
+title: Predicting Data Science Compensation from Public Job Postings
 ---
 
 > Employing Logistic Regression to Identify 'Above-Average' Paying Data Science Roles posted on Indeed.com
 
 ## Context
 
-Negotiating for salary can be very challenging; a little bit of knowledge about where the person across the table is coming from can go a long way. But an important element of reaching consensus is making sure that both parties are close enough at the outset that compromise is plausible. For example, for a job applicant to have an idea of the value of a given role can help he or she find an opportunity that matches or exceeds their expectations.
+Negotiating for salary can be very challenging; a little bit of knowledge about where the person across the table is coming from can go a long way. But an important element of reaching consensus is making sure that both parties are close enough at the outset that compromise is plausible. For example, for a job applicant to have an idea of what a company is interested in offering can help he or she find an opportunity that is a good fit for their expectations or needs. This project aims to do just that: take a company's job posting and predict what they (would) offer as baseline compensation.
 
-Using scraped data from Indeed.com, I set to test my own hypotheses about what types of skills are most valued within the Data Science field. Is 'Big Data' necessary for an above-average compensation package, or do companies value the ~80% of a time data scientists spend cleaning, mining and preparing data for analysis?
+This project also offered the opportunity to to test my own hypotheses about what types of skills are most valued within the Data Science field. Is 'Big Data' necessary for an above-average compensation package, or do companies really those who spend their time cleaning, mining and preparing data for analysis?
 
 ## Hypothesis
 
-I believe strongly in articulating our assumptions or understandings about a given problem or dataset at the outset, because even though one could refine their hypotheses **after** interpreting the results, there is little to be learned in such image-regulation. Instead, I will use this piece to go through my (sometimes misguided) thought-process.
+I believe strongly in articulating our assumptions or understandings about a given problem or dataset at the outset, because even though one could refine their hypotheses **after** interpreting the results, there is little to be learned with such an approach. Instead, I will use this piece to go through my (sometimes misguided) thought-process.
+
+Data is collected using Beautiful Soup, a scraping package available in Python, and is collected from cities across America using the search term "Data Scientist."
 
 Although there are important drivers of compensation, such as the type of company, the city (including its cost of living, and competition from other potential employers), and the applicant's experience, I have choosen to confine my analysis to interpreting **job descriptions** and **titles**. Adding additional features would undoubtedly strengthen this model, but my priority is testing my _a priori_ assumptions about the field.
 
 I proposed the following:
-1. **Big Data** Roles with 'Big Data' keywords ('big', 'hadoop', 'spark' etc...) are associated with greater salaries than Data Science roles as a whole.
-1. **Data Skills** Roles that enumerate specific data skills ('python', 'r', 'cleaning', 'scikit-learn' etc...) are also associated with above-average salaries
+1. **Big Data** Roles with 'Big Data' keywords ('big', 'hadoop', 'spark', 'volume' etc...) are associated with greater salaries than Data Science roles as a whole.
+1. **Data Skills** Roles that enumerate _specific_ data skills ('python', 'r', 'cleaning', 'scikit-learn' etc...) are also associated with above-average salaries
 1. **Seniority** Roles that include terms the denote seniority ('senior', 'lead', 'principle', 'VP' etc...) would also lead to above-average salaries.
 
-Based on the parameters of the project from General Assembly, I set out not to estimate salaries for each given role, but to classify them as either above or below average, using Logistic Regression (using scikit-learn).
+Based on the parameters of the project, my goal was to classify each job posting as either above or below average, using Logistic Regression.
 
-Going through my dataset, I found that roughly a third of scraped job postings fell into each of these categories. I was able to access roughly 4,500 individual job postings. Because the distribution of annual salary is right skewed the calculated average salary classifies 63% of job postings as 'above-average' (our baseline accuracy), meaning if my model cannot beat guessing 'above-average' 63% of the time, it is a pretty useless model.
+Going through my dataset, I found that roughly a third of scraped job postings fell into each of these categories (some fell into 2 or all 3). I was able to access roughly 4,500 individual job postings. Because the distribution of annual salary is right skewed, the calculated average salary classifies 63% of job postings as 'above-average' (our baseline accuracy), meaning if my model cannot beat guessing 'above-average' 63% of the time, it is a pretty useless model.
 
-![Disitribution of Salary within my Scraped Dataset](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/salary_hist.jpg?raw=true "Distribution of Listed Salary (Indeed.com)")
+![Distribution of Salary within my Scraped Dataset](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj4/salary_hist.jpg?raw=true "Distribution of Listed Salary (Indeed.com)")
 
 ### Side Note: Binary versus Ordinal Values
 
 I faced a methodological choice in my string parsing: if two job descriptions indeed matched a value within my "seniority" list, but one had only one matching word and the other had two, should they be treated the same? In other words, should two matches suggest a role is _more_ senior, or should five matches and one match be lumped together as simply a 'senior' job posting?
 
-I therefore made matching features and ran each model below with both **ordinal** features (e.g. 3 matches equals a 'seniority' score of 3, which is considered three times as senior as a seniority score of 1) and **binary** features (senior (1) or not senior (0)). Using cross-validation, I typically found that the ordinal model had more success in classifying job roles; however, I find the arguement for using the binary model to be more compelling. For specific performance of the two models, please refer to my github.
+In order to address this made matching features and ran each model below with both **ordinal** features (e.g. 3 matches equals a 'seniority' score of 3, which is considered three times as senior as a seniority score of 1) and **binary** features (senior (1) or not senior (0)). Using cross-validation, I typically found that the ordinal model had more success in classifying job roles (I will unpack this  further later in the blog post). For specific performance of the two models, please refer to my github.
 
 ### End of Side Note - Back to the Model
 
 
 I found that using the above features, I was able to produce a model with an F1 Score of .75 (a metric that combines precision and recall), or an area under the curve of .76. This suggests my first models was indeed outperforming random chance.
 
-However, there was a major problem: for two of my three variables, the effect was working in the opposite direction I expected. 'Big Data''s coefficient seemed to change each time I ran a new regression, while Data Skills was consistently negative. Was is plausible that knowing R or Python _hurt_ one's compensation as a Data Scientist?
+However, there was a major problem: for two of my three variables, the effect was working in the opposite direction I expected. `Big Data`'s coefficient seemed to change each time I ran a new regression, while `Data Skills` was consistently negative. Was is plausible that knowing R or Python _hurt_ one's compensation as a Data Scientist?
 
-Nonetheless, seniority was strongly associated with higher compensation: when I ran the model using only seniority as a feature, neither my F1 score nor area under the ROC curve decreased drastically. However, when I included Data Skills as a feature with Seniority, my model still outperformed the one-feature model, while 'Skills' still had a negative coefficient.
+Nonetheless, `Seniority` was strongly associated with higher compensation: when I ran the model using only `Seniority` as a feature, neither my F1 score nor area under the ROC curve decreased drastically. However, when I included Data Skills as a feature with `Seniority`, my model still outperformed the one-feature model, while `Skills` still had a negative coefficient.
 
 ## Back to the Drawing Board
 
-I revisited my "skill" and 'Big Data' list I had used to parse the job descriptions and titles in my dataset, and realized that it were more logical to restructure the lists and run the model again. First, I decided to run the test against both the description and the title, instead of just the former. I opted to create 3 new features to supplement the 'seniority' variable (with both ordinal and binary versions):
+I revisited my `Skill` and `Big Data` lists I had used to parse the job descriptions and titles in my dataset, and realized that it were more logical to restructure the lists and run the model again. First, I decided to run the test against both the description and the title, instead of just the former. I opted to create 3 new features to supplement the `seniority` variable (with both ordinal and binary versions):
 
 1. **Big Data (v2)** In this list, I used as specific a list of 'big data' terms as I could, to denote skills likely being used in large enterprises where the engineering challenge of processing data is as problematic as analysis itself ('hadoop', 'spark', 'hive', 'engineer', 'architect', 'scala', 'julia' etc..). I expected this would be associated with higher pay.
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Pop Theory: (Emotionally) Neutral Song Titles are Boring
+title: Pop Theory - (Emotionally) Neutral Song Titles are Boring
 ---
 
 

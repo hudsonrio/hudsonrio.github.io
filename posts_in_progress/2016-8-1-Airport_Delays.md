@@ -1,16 +1,73 @@
 ---
 layout: post
-title: Why would a Political Science graduate start coding?
+title: Make American Aviation On-Time Again - Identifying Contributors to Delays & Airport Operational Recommendations
 ---
-> My road to Data Science
 
-Around a year ago, after working my way through the ranks in sales at a startup called [Mighty](https://mighty.com/), I got the chance to work on our operational processes to rehaul, refine and document our standard operating procedure. My primary asset, I realized, in figuring out how to best achieve these goals was **data**.
+Much is made of America's need to make major infrastructure investments, with both progressive politicians and the unclassifiable Donald Trump agreeing that it is a major focus for this upcoming Presidential term. Hillary announced in 2015 that her platform includes a plan to allocate $55 billion over five years to provide financing for major infrastructure improvements ([Donald Trump recently offered that he wants to double this amount](http://www.nytimes.com/2016/08/03/us/politics/trump-clinton-infrastructure.html)), while Bernie has put forward an [even bigger spending bill](https://berniesanders.com/issues/creating-jobs-rebuilding-america/) he terms "The Rebuild America Act." (It is worth noting that the Presidential candidate may put forth a platform, but ultimately the power of the purse resides with Congress. Don't boo, vote.)
 
-I hacked my way using google spreadsheets, periscope.io (and some basic ability to query our postgreSQL database), to contribute to our 'innovation pipeline': a list of prioritized hypotheses, a process for vetting methodology, and a systematic approach to documenting learnings.
+Hillary Clinton specifically highlights airports as key within her infrastructure proposal:
 
-However, our analytical capacity - we had a team of passionate, young, curious, inexperienced folks - far exceeded the data we had at hand, and the rate we could gather data through controlled experimentation. The reason was not that we had not thought to collect enough data, but that we had not fully automated nor considered the tradeoffs of our data pipeline. In some places, client-entered data lead to dozens of duplicates or spelling variations. Data we could not trust was fell into disuse, leading to a self-reinforcing cycle of "pushing off" our technical debt by not addressing these issues at the outset. For example, our sales KPIs depended on consistent data entry in 2 disconnected CRMs (which never happened consistently). Because we could not trust these KPIs because of lack of data entry, a vicious cycle emerged: nobody updated Salesforce consistently, because they had next to no incentive to do so, meaning our data was largely useless.
+>"[My plan calls for] making smart investments in ports, airports, roads, and waterways to address the key chokepoints for the movement of goods in our economy...It means building airports and air traffic control systems that set the world standard for efficiency, reliability, and safety — saving time, money, and energy on every trip."(source)[https://www.hillaryclinton.com/briefing/factsheets/2015/11/30/clinton-infrastructure-plan-builds-tomorrows-economy-today/]
 
-!["I'll Send You Those Growth Projections This Week"](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_why_ds/crm.png?raw=true)
+As the plan highlights, the purpose of spending on airports is to make "the movement of goods" (or people) cheaper and faster, helping America's economy become more efficient. There seems to be bipartisan consensus about the need to invest in efficiency (at least in this narrow context), but how should we best achieve these efficiency gains? Where should the first billion go?
+
+
+![Using Principle Component Analysis, I Flattened My Delay Features ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/pca_all_features.png?raw=true)
+
+
+Using a dataset of national airport delays (aggregated at the airport/year level), I set out to accomplish three goals:
+
+1) Identify the factors that contribute most to delays,
+2) Group airports that share similar operational challenges (using unsupervised learning), and
+3) Offer strategic recommendations about how best to allocate limited resources.
+
+
+## What factors contribute to delays?
+
+My first step in understanding how delays operate was ask: are we making progress now? I aggregated all ~800 airports in my dataset to find the average proportion of flights delayed at any airport (unweighted), finding that although there seems to be a slightly positive trend, progress has been inconsistent.
+
+![Average Proportion of Departures That Are Delayed, By Year](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/gradual_progress.png?raw=true)
+
+I then took a look at the airports with the largest proportion of (out-going) delays, finding that Reagan, Tampa, and Cincinnati were last with just over 80% of outgoing flights going out on-time. This was a surprising result because I had never associated Reagan with (particularly) poor service. I noticed that each of these were a) relatively small airports with b) minimal effect of weather and c) on the east coast.  These observations were at odds with my expectations.
+
+But airports do not exist in isolation: they are deeply interconnected and mutually interdependent. When a flight from Chicago is delayed, a flight in Atlanta might be held up waiting for passengers, causing the following flight to arrive late in San Juan. This phenomena of [cascading delays was described by Nate Silver](http://fivethirtyeight.com/datalab/fly-early-arrive-on-time/) when he recommended flying early in the day to mitigate the risk of delays. Indeed, when plotting the average incoming and outgoing delay frequency (where each point is the average for an airport in a given year), we can see that **outgoing delays has a similar distribution and is only slightly shifted left as compared to incoming-delays**, suggesting that most airport delays are a result of incoming delays.
+
+![Histogram of Average Delay % by Airport-Year (Arrival Delays in Blue, Departure Delays in Orange)](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/arrival_delays_drive_departure_delays.png)
+
+Therefore, from the standpoint of evaluating operational efficiency at airports, we should only hold airports accountable for the relative difference between incoming delays and outgoing delays. For example, Westchester Airport has had fewer than 60% of flights arrive on-time 9 of the last 10 years. Even if they never contributed to a single delay, Westchester's management could not possibly achieve outgoing departure delays of much less than 60% should that trend hold true.
+
+To this point, we've been discussing the proportion of flights that are delayed, but this is only half the story: we need to consider not only how often flights are late, but _how late_ are the late flights (on average)?
+
+![Distribution of Magnitude of Average Delay, and Probability of a Delay](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/arrival_delays_drive_departure_delays.png)
+
+As show below, there is a strong correlation between these two values (as expected), which suggests that using Net Delay Score (average delay * frequency of delay) as the target in our model is logical. Then, after scaling the remaining features, I implemented a random forest model in order to extract feature importance. Here is the summary of the takeaways:
+
+1. As described above, arrival delays was an important feature, as was frequency of incoming delays. I engineered two features to account for net lateness (departure-arrival) for the final model as a result of this observation.
+2. Longitude (East-West) was very predictive of lateness. By glancing at a logistic regression implementation of this model and looking at the coefficient , I realized that eastern airports had higher lateness. However,for my final model, I did not include GPS coordinates as a feature, because I was concerned with grouping airports by operational similarities, not geographic similarities.
+3. The number of samples per year by airport (a proxy for the daily traffic in an airport) was also a strongly predictive factor, suggesting that larger airports were more likely to see delays.
+4. Whether an airport was designated 'For Public Use' or 'Federalized/ Commercial' was not predictive of Net Delay Score, so I dropped this feature from my model.
+
+## Airports as a 'Weak link system'
+
+I learned the term "weak link" from Malcolm Gladwell, and the analogy that resonated most intutitively was his comparison of soccer and basketball. 
+
+
+## Clustering Airports by Operational Similarities
+
+Using these observations about my features, I engineered features for a range of unsupervised learning techniques in order to categorize airports by shared organizational challenges (or strengths), such that we can make recommendations about how to allocate resources among airports nationally. Below is a series of progressive visualizations using Principle Component Analysis (all features), hierarchical clustering (selective features), Isomap clustering, and finally t-SNE. I included visualizations with GPS coordindates (latitude, longitude) to show how including them drastically altered the clusters.
+
+
+images
+
+Hierarchical Model suggests 2-4 clusters
+
+Settled on DB Scan, 3 cateogires.
+
+
+## What
+
+
+ DB Scan Model- not including GPS coordinates.
 
 
 Three things became abundantly clear:

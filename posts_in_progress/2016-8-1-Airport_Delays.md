@@ -24,13 +24,15 @@ Using a dataset of national airport delays (aggregated at the airport/year level
 
 ## What factors contribute to delays?
 
-My first step in understanding how delays operate was ask: are we making progress now? I aggregated all ~800 airports in my dataset to find the average proportion of flights delayed at any airport (unweighted), finding that although there seems to be a slightly positive trend, progress has been inconsistent.
+My first step in understanding how delays operate was to ask: are we making progress now? I aggregated all ~800 airports in my dataset to find the average proportion of flights delayed at any airport, finding that although there seems to be a slightly positive trend, progress has been inconsistent (this was a quick, rough snapshot - for a more accurate representation, I would weight each airport by the volume of passengers traveling through it.)
 
 ![Average Proportion of Departures That Are Delayed, By Year](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/gradual_progress.png?raw=true)
 
-I then took a look at the airports with the largest proportion of (out-going) delays, finding that Reagan, Tampa, and Cincinnati were last with just over 80% of outgoing flights going out on-time. This was a surprising result because I had never associated Reagan with (particularly) poor service. I noticed that each of these were a) relatively small airports with b) minimal effect of weather and c) on the east coast.  These observations were at odds with my expectations.
+I then took a look at the airports with the largest proportion of (out-going) delays, finding that Reagan, Tampa, and Cincinnati had the most frequent delays, with barely over 80% of outgoing flights going out on-time. This was a surprising result because I had never associated Reagan with (particularly) poor service. I noticed that each of these were a) relatively small airports with b) in relatively warm weather and c) on the east coast.  These observations were at odds with my expectations.
 
-But airports do not exist in isolation: they are deeply interconnected and mutually interdependent. When a flight from Chicago is delayed, a flight in Atlanta might be held up waiting for passengers, causing the following flight to arrive late in San Juan. This phenomena of [cascading delays was described by Nate Silver](http://fivethirtyeight.com/datalab/fly-early-arrive-on-time/) when he recommended flying early in the day to mitigate the risk of delays. Indeed, when plotting the average incoming and outgoing delay frequency (where each point is the average for an airport in a given year), we can see that **outgoing delays has a similar distribution and is only slightly shifted left as compared to incoming-delays**, suggesting that most airport delays are a result of incoming delays.
+But airports do not exist in isolation: they are deeply interconnected and mutually interdependent. When a flight from Chicago is delayed, a flight in Atlanta might be held up waiting for passengers, causing the following flight to arrive late in San Juan. This phenomena of [cascading delays was described by Nate Silver](http://fivethirtyeight.com/datalab/fly-early-arrive-on-time/) when he recommended flying early in the day to mitigate the risk of delays. This phenomena is also shown in Delta's recent experience with widespread delays - each delay magnifies the problem, compounding lateness.
+
+Indeed, when plotting the average incoming and outgoing delay frequency (where each point is the average for an airport in a given year), we can see that **outgoing delays has a similar distribution and is only slightly shifted left as compared to incoming-delays**, suggesting that most airport delays are a result of incoming delays. This is logical: an hour delay in Chicago in the morning is likely to be passed along to each of the, say, 3 other flights the aircraft is scheduled to make that day, as well as other flights which are forced to wait for passengers, or airline staff.
 
 ![Histogram of Average Delay % by Airport-Year (Arrival Delays in Blue, Departure Delays in Orange)](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/arrival_delays_drive_departure_delays.png)
 
@@ -40,16 +42,24 @@ To this point, we've been discussing the proportion of flights that are delayed,
 
 ![Distribution of Magnitude of Average Delay, and Probability of a Delay](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/arrival_delays_drive_departure_delays.png)
 
-As show below, there is a strong correlation between these two values (as expected), which suggests that using Net Delay Score (average delay * frequency of delay) as the target in our model is logical. Then, after scaling the remaining features, I implemented a random forest model in order to extract feature importance. Here is the summary of the takeaways:
+As show below, there is a strong correlation between the magnitude and frequency of delays, which suggests using Net Delay Score (average delay times the frequency of delay) is a better representation of true lateness (the target in our model) than using either of these factors independently. Then, after scaling the remaining features, I implemented a random forest model in order to extract feature importance. Here is the summary of the takeaways:
 
-1. As described above, arrival delays was an important feature, as was frequency of incoming delays. I engineered two features to account for net lateness (departure-arrival) for the final model as a result of this observation.
-2. Longitude (East-West) was very predictive of lateness. By glancing at a logistic regression implementation of this model and looking at the coefficient , I realized that eastern airports had higher lateness. However,for my final model, I did not include GPS coordinates as a feature, because I was concerned with grouping airports by operational similarities, not geographic similarities.
+1. As expected, _arrival delays were an important feature, as was frequency of incoming delays__. I engineered two features to account for net lateness (departure-arrival) for the final model as a result of this observation.
+2. Longitude (East-West) was very predictive of lateness (while Latitude was not). By glancing at a logistic regression implementation of this model and looking at the coefficient, I realized that eastern airports observed more lateness. However, for my final model, I did not include GPS coordinates as a feature, because I was concerned with grouping airports by operational similarities, not geographic similarities (see visualizations below for further discussion of this point).
 3. The number of samples per year by airport (a proxy for the daily traffic in an airport) was also a strongly predictive factor, suggesting that larger airports were more likely to see delays.
 4. Whether an airport was designated 'For Public Use' or 'Federalized/ Commercial' was not predictive of Net Delay Score, so I dropped this feature from my model.
 
-## Airports as a 'Weak link system'
+## Airports as a 'Weak Link System'
 
-I learned the term "weak link" from Malcolm Gladwell, and the analogy that resonated most intutitively was his comparison of soccer and basketball. 
+I am borrowing the term "weak link system" from Malcolm Gladwell's excellent _Revisionist History_ podcast ()"My Little Hundred Million")[http://revisionisthistory.com/episodes/06-my-little-hundred-million] (which seems itself borrowed from ("Why Everything You Know About Soccer is Wrong") [https://www.amazon.com/Numbers-Game-Everything-About-Soccer/dp/0143124560?ie=UTF8&*Version*=1&*entries*=0]. I am defining a "weak link" system, for the purposes of this post as:
+
+>"A network in which the greatest marginal efficiency improvement can be achieved by increasing efficiency in the least productive nodes, because the system is highly mutually interdependent. In contrast, **a strong link system"** is one where the greatest marginal efficiency benefits can be achieved through investment in the central or most important nodes.""
+
+Gladwell explains the concept most intuitively by using the analogy of Soccer versus Basketball. In short, in Basketball, teams rely heavily on their best players, so the teams with the best players tend to do well (think Stephen Curry on the Warriors, or Lebron James on the Cavs); soccer, however, is a game where the quality of a team is driven more by its _worst_ player.
+
+A very cursory look at some (soccer)[https://www.whoscored.com/Regions/252/Tournaments/2/Seasons/3853/Stages/7794/TeamStatistics/England-Premier-League-2013-2014] and (basketball)[http://www.basketball-reference.com/leagues/NBA_stats.html] statistics bore this example out: in soccer, most teams pass the ball roughly ten times (30-40) more per shot than in the NBA (2-4), suggesting that in order to score a goal, a lot more has to go right in soccer. If anyWhereas,  To articulate this p took a quick look at some summary statistics for the EPL and the NBA, and found 
+
+and the analogy that resonated most intutitively was his comparison of soccer and basketball.
 
 
 ## Clustering Airports by Operational Similarities

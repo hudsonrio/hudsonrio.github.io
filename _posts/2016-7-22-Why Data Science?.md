@@ -10,14 +10,14 @@ I hacked my way using google spreadsheets, periscope.io (and some basic ability 
 
 However, our analytical capacity - we had a team of passionate, young, curious, largely inexperienced folks - far exceeded the data we had at hand, and the rate we could gather data through controlled experimentation. The reason was not that we had not thought to collect enough data, but that our data pipeline was accessible only to more technical members of the team.
 
-We also ran into issues of data integrity; for example, client-entered data (e.g. "Who is your attorney?") lead to dozens of duplicates or spelling variations. Data we could not trust fell into disuse, and our leading to a self-reinforcing cycle of "pushing off" our technical debt by not addressing these issues at the outset. For example, some of our sales KPIs depended on consistent data entry in 2 disconnected CRMs. Because we could not trust these KPIs because of lack of data entry in our secondary CRM (Salesforce), a vicious cycle emerged: Salesforce was not updated consistently, meaning we were hesitant to trust our data.
+We also ran into issues of data integrity; for example, client-entered data (e.g. "Who is your attorney?") lead to dozens of duplicates or spelling variations. Data we could not trust fell into disuse, and our leading to a self-reinforcing cycle of "pushing off" our technical debt by not addressing these issues at the outset.
 
 !["I'll Send You Those Growth Projections This Week"](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_why_ds/crm.png?raw=true)
 
 
 Three things became clear:
 
-1. We were spending too much amount of time and resources collecting data manually.
+1. We were spending too much amount of time and resources manually collecting data .
 
 2. We could not trust (all of) our data definitively, constraining those in management positions to make data-driven decisions in certain aspects of the company.
 
@@ -38,7 +38,7 @@ Thanks to input from some of my teammates (thanks to Darlin and Ish especially f
 
 * I did not take a computer science class in college, was deeply unfamiliar with the industry jargon, and did not have a good mental model of how different languages work together, or what exactly a given coder was responsible for.
 
-* I realized, however, that I had some skills that few coders had that could set me apart: I was familiar (at a high-level) with frequentist and bayesian statistical approaches, I had project management experience, and knew how these skills fit into a start-up.
+* I realized, however, that I had some skills that few coders had that could set me apart: I was familiar with frequentist and bayesian statistical approaches owing to my time in college as a Statistics TA, I had project management experience, and I knew how these skills fit into the context of a start-up.
 
 * While I avoided computer science in high school and college, I realized that it was not a lack of intellect or aptitude that kept me away from coding, but because of how I defined myself: I had a self-conception as a qualitative writer who leaned on quantitative elements to prove a point, but I did not permit myself to explore the power of programming as an intellectual path. I realized I had dismissed "computer science" or "coding" just because many elements I associated with computer science (such as front-end development or mobile app development) did not fit my interests.
 
@@ -84,6 +84,6 @@ Thanks to input from some of my teammates (thanks to Darlin and Ish especially f
 5. Working with others can help compensate for one's weaknesses, and to support collaborators strengths. Teams are often positive-sum affairs in terms of efficiency. You can also get a lot by reading the code of others (e.g. Cross Validated, Stack Overflow, Kaggle, Documentation examples).
 6. Because new methods, packages, and implementations are constantly coming out, there is disproportionate value in "recent" work, making it easier for new entrants to "catch-up."
 7. Coding can be highly rewarding at an emotional level (at least that is my experience).
-8. You can add a lot of value to a real-world team, by combining not only computer science skills, but through more generalized data-driven and systematic thinking. Foresight in data collection, for example, can be more valuable than any model. 
+8. You can add a lot of value to a real-world team, by combining not only computer science skills, but through more generalized data-driven and systematic thinking. Foresight in data collection, for example, can be more valuable than any model.
 
 A central part of this blog post was in articulating my own mental model of the data science field and coding more broadly. If you (who likely know much more than I) believe I could add more nuance to this model, or that something I argued is just plain wrong, please reach out to me (details on my about page).

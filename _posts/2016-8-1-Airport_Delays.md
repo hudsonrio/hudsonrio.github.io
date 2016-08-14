@@ -29,7 +29,12 @@ My first step in understanding how delays operate was to ask: are we making prog
 
 ![Average Proportion of Departures That Are Delayed, By Year](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/gradual_progress.png?raw=true)
 
-I then took a look at the airports with the largest proportion of (out-going) delays, finding that Reagan, Tampa, and Cincinnati had the most frequent delays, with barely over 80% of outgoing flights going out on-time. This was a surprising result because I had never associated Reagan with (particularly) poor service. I noticed that each of these were a) relatively small airports with b) in relatively warm weather and c) on the east coast.  These observations were at odds with my expectations.
+I then took a look at the airports with the largest proportion of (out-going) delays, finding that Reagan, Tampa, and Cincinnati had the most frequent delays, with barely over 80% of outgoing flights going out on-time.
+
+![Airports with the most Outgoing Delays, Average Over Last Decade](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/most_delayed_departures.png?raw=true)
+
+
+This was a surprising result because I had never associated Reagan with (particularly) poor service. I noticed that each of these were a) relatively small airports with b) in relatively warm weather and c) on the east coast.  These observations were at odds with my expectations.
 
 But airports do not exist in isolation: they are deeply interconnected and mutually interdependent. When a flight from Chicago is delayed, a flight in Atlanta might be held up waiting for passengers, causing the following flight to arrive late in San Juan. This phenomena of [cascading delays was described by Nate Silver](http://fivethirtyeight.com/datalab/fly-early-arrive-on-time/) when he recommended flying early in the day to mitigate the risk of delays. This phenomena is also shown in Delta's recent experience with widespread delays - each delay magnifies the problem, compounding lateness.
 

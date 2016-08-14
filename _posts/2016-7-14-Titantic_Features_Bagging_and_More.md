@@ -8,15 +8,15 @@ title: Who Lives, Who Dies, Who Tells Your Story? (Titanic Edition)
 
 ## Context
 
-As is a rite of passage among those studying machine learning - as well as the introductory kaggle competition entry - I spent this week grappling with the titanic log dataset. My mission? Identify, simply based on the passenger log, who would make it to a lifeboat and survive the Arctic disaster.
+I spent this week grappling with the titanic log dataset, a rite of passage among those studying machine learning. My mission? Identify, simply based on the passenger log, who would make it to a lifeboat and survive the Arctic disaster.
 
 But it was also an opportunity to test a concept I've been grappling with: whether and when input variables (hereafter referred to as "features") should be considered categorical (and therefore binarized), and when they should be considered continuous (and, typically, scaled.)
 
-I decided to make two similar sets of features: scaled features, primarily for regression techniques, and binary 'dummy' features (you will recall I did a similar technique in my first post about emotional song content). By splitting my features this way, I would be able to run a wide variety of models and compare their performance relative to one another when run through various machine learning algorithms. This post explores the features I extracted in this particular problem, further exploration into categorical versus continuous features, and and exploration of "ensemble" machine learning models.
+I decided to make two similar sets of features: scaled features, primarily for regression techniques, and binary 'dummy' features (you will recall I did a similar technique in my first post about emotional song content). By splitting my features this way, I would be able to run a wide variety of models and compare their performance relative to one another when run through various machine learning algorithms. This post consists of an explanation of the features I extracted from the Titanic passenger log dataset, further examination into the implications of using categorical versus continuous features, and some exploration of "ensemble" machine learning models.
 
 ## Features I added --
 
-After exploring the data, I considered what sorts of factors would _intuitively_ seem to predict survival of the titanic. I reasoned that people closer to the lifeboats would likely have a better shot of survival, as would rich folks, and finally groups  who were either prioritized in evacuation (perhaps women and children?). Therefore, I set the following goals:
+After exploring the data, I considered what sorts of factors would _intuitively_ seem to predict survival of the titanic. I reasoned that people closer to the lifeboats would likely have a better shot of survival, as would rich folks, and finally groups who were prioritized in evacuation, such as women and children. Therefore, I set the following goals:
 
 1. Find some way to predict each person's position on the boat (what deck? which side?)
 2. Improve demographic info (including finding missing ages, and fine-tuning titles)
@@ -43,7 +43,7 @@ At first, I considered three options:
 1. dropping each of these passengers with no ages (177 of my training set of 891) from the dataset and keeping Age as a feature
 1. dropping age as a feature
 
-My first option was inadequate because it meaningfully changed the distribution of age across the boat. Look at the histogram above - about 3.5% of people on the boat were 28; however, by imputing ages, this number would rise to over a fifth of the boat. This would have meaningfully changed how age behaved as a featue, likely hurting out model's predictions.
+My first option was inadequate because it meaningfully changed the distribution of age across the boat. Look at the histogram above - about 3.5% of people on the boat were 28; however, by imputing ages, this number would rise to over a fifth of the boat. This would have meaningfully changed how age behaved as a feature, likely hurting out model's predictions.
 
 The second and third options were not reasonable for similar reasons: I had a limited number of features, and felt that dropping age or roughly 20% of my dataset would lead to a loss of accuracy that I could not make up no matter how sophisticated and well-tuned my model.
 
@@ -101,20 +101,20 @@ Returning to the question at hand: how should I deal with my 'Fare' variable, or
 Nonetheless, I prepared fare (among my other features) in both ways, so I could test this intuition based on model efficacy.
 
 
-## How did continuous and categorically cleaned X values effect the accuracy of various models?
+## How did continuously and categorically prepared features effect the accuracy of various models?
 
 ![Table of Model Predictive Accuracy (Cross-validated F1 Scores)](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/model_output_ranked.png?raw=true "Cross-validated F1 Scores")
 
-The table above is the ranked output of each of these models, ranked by their F1 score (which is a composite score of precision and accuracy of both prediction classes).
+The table above is the output of each of these models, ranked by their F1 score (which is a composite score of precision and accuracy of both prediction classes).
 
 As you can see above, the mean F1 score was higher for the models using scaled features than dummy features, and the top 3 performing models used scaled features; however, different models had different outcomes based on the scaled vs. dummy input. For example, a simple decision tree model with categorical inputs outperformed the same model with continuous data.
 
 The primary takeaway is that neither scaled or binarized data is inherently better than the other; it depends on the feature in question. Scaled data, however, was the way that I was able to create my most accurate model (as judged by F1 Score).
 
 
-## Why did these model outperform the others?
+## Which models outperformed the others?
 
-Two models stood out: Bagging (which is an ensemble method that uses decision_trees), and Logistic Regression (optimized by grid search).
+Two models stood out: Bagging (which is an ensemble method that uses decision trees), and Logistic Regression (optimized by grid search).
 
 Here are visualizations of the ROC curves of the Bagging model. The area under the curve is a good way for assessing the predictiveness of the model:
 
@@ -123,7 +123,7 @@ Here are visualizations of the ROC curves of the Bagging model. The area under t
 
 The big challenge in this was in the relative weight of the 30 features that I extracted from the dataset. It appears that a critical element in this dataset was using bagging, or training our model (in this case using both KNN and a basic decision tree algorithm) on a number of randomly selected samples (with replacement) of the input features, and aggregating the results of these models helped ensure appropriate weighting of each feature.
 
-We see a similar phenomena in the optimized logistic regression, where we were using a ridge penalty, which is best suited for problems where the relative weighting of a number of features is important.
+We see a similar phenomenon in the optimized logistic regression, where we were using a ridge penalty, which is best suited for problems where the relative weighting of a number of features is important.
 
 The decision tree model yielded an output of the relative value of each feature, and I noticed that the relative importance of features was bimodal: two features (scaled age and scaled fare) accounted for roughly 50% of the assigned importance (age and fare paid), while the other 28 features accounted for the other ~50% of importance in the model
 
@@ -139,7 +139,7 @@ Next, I would use recursive feature selection to identify which features I need 
 
 This analysis did not include an implementation of a Support Vector Machine model, but this is undoubtedly a technique I would add in future research.
 
-Finally, I would spend time 'pruning' my decision tree models, passing optional parameters into my bagging tree model using grid search. For all these revision, please check out my final model submission to Kaggle!
+Finally, I would spend time 'pruning' my decision tree models, passing optional parameters into my bagging tree model using grid search.
 
 
 ## Conclusion
@@ -156,4 +156,22 @@ I re-ran the analysis, and found essentially no difference in the F1 score of ei
 
 ![Graph of Relative Feature Importance: Titles have Compensated for Age Fare stand out on the Right](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/feature_importance_noage.png?raw=true "Feature Importance Plot - Age and Fare Dominate")
 
-I also explored this feature importance further by cross-referencing the coefficients in my logistic regression model, finding that port_cabin had a consistently positive coefficient, while starboard did not. Additionally, there was the strongest negative coefficient for Cabin 'C' compared to survival, suggesting it was the level to have a room on.
+I also explored this feature importance further by cross-referencing the coefficients in my logistic regression model, finding that port_cabin had a consistently positive coefficient, while starboard did not. Additionally, the increased feature importance for Cabin 'C' (combined with a glance at its _negative_ coefficient when predicting survival in previous regressions) suggests that for some reason, it was more dangerous to be on floor C than the other floors. A quick google search suggests that it indeed was the location of numerous [first-class rooms](http://www.titanic-titanic.com/first_class_cabins.shtml) (although seemingly less decadent than Cabin B), as well as the location of the [barber shop](http://www.titanic-titanic.com/titanic_first_class_interiors.shtml).
+
+A [forum on Kaggle](https://www.kaggle.com/c/titanic/forums/t/4693/is-cabin-an-important-predictor) included a snapshot of the boat design, which seems puzzling: Cabin C appears quite close to the top of the boat, where the lifeboats are.
+
+![A layout of the titanic, from Dexter on Kaggle](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/boat.png?raw=true)
+
+Cabin C happens to have the largest number of ticketed passengers in our dataset, but it represents only ~30% of ticketed passengers, which only makes sense when we consider that many passengers do not have specific cabins on their tickets upon boarding. These passengers who are unrepresented  are likely in the lower cabins, where there are likely smaller accomodations and therefore larger proportional share of the boat's population.
+
+My model cannot place passengers with nothing listed on their ticket on the boat, and therefore lumps them together. As a whole, these people die more than any other glass, even Cabin 'G'. But for now lets focus exclusively on people for whom we have a Cabin location listed:
+
+![Cabin A, C and G stand out](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/cabin_survival.png?raw=true)
+
+We can see that if you were at Cabin D or below, it was unfavorable in terms of survival to be farther down towards Cabin G. This makes intuitive sense when we think about the incident: the closer one was to the ocean and the farther from the lifeboats, the less likely one was to get off the boat.
+
+I created an identical same bar plot, but set the color of each bar as the proportion of seats on the starboard (more yellow) or port (more purple) sides. We can see that the upper classes tended to have a proportionally high number of seats on the starboard side. About 79% of passengers our model located on the starboard side survived, compared to just 73% for the port (left) passengers. It appears this difference is largely explained simply by the difference in class make-up of the port/starboard orientation of tickets.
+
+![Upper Class Tickets](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj5/survival_orientation.png?raw=true)
+
+The cause for Cabin C's relatively poor survival remains a mystery, but I hope digging deeper into its explanation is an interesting look at how to investigate and understand the features of our model, as they often are the more critical choice than the model itself.

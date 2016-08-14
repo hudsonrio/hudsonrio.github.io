@@ -18,18 +18,18 @@ Thanks to the folks at omdb, we can [access the OMDb API](http://www.omdbapi.com
 ## Some Assumptions of Note
 One factor is the cost of acquiring a given movie, but for the purposes of this analysis, we will assume that acquiring the rights to stream each movie costs about the same. Another is the fact that I was unable to find a complete list of movies that Netflix has _already_ streamed, meaning we may be offering duplicate recommendations.
 
-Nonetheless, our goal of this study is primarily to understand **what factors help us predict a good movie** so that our model might be tuned and employed elsewhere, so these assumptions do not disqualify our analysis.
+Nonetheless, the goal of this study is primarily to understand **what factors help us predict a good movie** so that our model might be tuned and employed elsewhere, so these assumptions do not disqualify our analysis.
 
 ## What are we trying to predict?
 
 Back to the "good" part. Unfortunately, because we do not have access to Netflix's proprietary data about its [80 Million Users](http://files.shareholder.com/downloads/NFLX/1378700698x0x886428/5FB5A3DF-F23A-4BB1-AC37-583BAEF2A1EE/Q116LettertoShareholders_W_TABLES_.pdf), we'll have to do the best with what we can get off the web.
 
-However, we can intuite a basic understanding of Netflix's business. It is a subscription service so their primary business goal is essentially to acquire and retain (paying) users. We also know Netflix operates in dozens of countries, with an broad and diverse user-base. John Ciancutti referred to this problem of keeping everybody happy [in a Quora answer:](https://www.quora.com/Does-Netflix-add-content-based-on-your-searches/answer/John-Ciancutti) that:
+However, we can intuit a basic understanding of Netflix's business. It is a subscription service so their primary business goal is essentially to acquire and retain (paying) users. We also know Netflix operates in dozens of countries, with an broad and diverse user-base. John Ciancutti referred to this problem of keeping everybody happy [in a Quora answer:](https://www.quora.com/Does-Netflix-add-content-based-on-your-searches/answer/John-Ciancutti) that:
 
 > "Netflix seeks the most efficient content. Efficient here meaning content that will achieve the maximum happiness per dollar spent. There are various complicated metrics used, but what they are intended to measure is happiness among Netflix members.
 
 
-[Zach Bulygo of kissmetrics has a good post](https://blog.kissmetrics.com/how-netflix-uses-analytics/) about in which he hypothesizes that retaining users is primarily a function of engagement: people who use Netflix will never go without it, but people who stop logging on are more likely to cancel.
+[Zach Bulygo of kissmetrics has a good post](https://blog.kissmetrics.com/how-netflix-uses-analytics/) in which he hypothesizes that retaining users is primarily a function of engagement: people who use Netflix will never go without it, but people who stop logging on are more likely to cancel.
 
 >For instance, maybe [Netflix] know[s] “If we can get each user to watch at least 15 hours of content each month, they are 75% less likely to cancel. If they drop below 5 hours, there is a 95% chance they will cancel.” So now that they have this data, they can ask themselves **“How do we help users watch at least 15 hours of content per month?”**
 
@@ -43,9 +43,9 @@ Fortunately, we also have access to the "popcorn" score, as seen above. This met
 
 >"Metacritic tells you how good it is while [Rotten Tomatoes] tells you the chances of you liking."
 
-For our purposes, this is the best metric available to project what Netflix cares about. We don't truely care about whether a movie is "one of the greatest of all time," we care if it makes Netflix's users happy. However, there are limitations worth noting:
+For our purposes, this is the best metric available to project what Netflix cares about. We don't truly care about whether a movie is "one of the greatest of all time," we care if it makes Netflix's users happy. However, there are limitations worth noting:
 
-1. There may be a bias in user response, because these responses tend to be immediately after seeing the movie (where we might be most pleased or dissasified)
+1. There may be a bias in user response, because these responses tend to be immediately after seeing the movie (where we might be most pleased or dissatisfied)
 2. There is also likely a bias towards "Blockbusters," especially those that rely on visuals, which are best experienced in theaters and may have relatively less upside on Netflix.
 
 Regarding the first caveat, this may actually be to our benefit: users on Netflix (probably) rarely return to content, especially as it is cycled out of rotation over time, meaning their immediate impression is the only one that matters.

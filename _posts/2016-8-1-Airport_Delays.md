@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Make American Aviation On-Time Again - Identifying Contributors to Delays & Airport Operational Recommendations
+title: Make American Aviation On-Time Again
 ---
 
 Much is made of America's need to make major infrastructure investments, with both progressive politicians and the unclassifiable Donald Trump agreeing that it is a major focus for this upcoming Presidential term. Hillary announced in 2015 that her platform includes a plan to allocate $55 billion over five years to provide financing for major infrastructure improvements ([Donald Trump recently offered that he wants to double this amount](http://www.nytimes.com/2016/08/03/us/politics/trump-clinton-infrastructure.html)), while Bernie has put forward an [even bigger spending bill](https://berniesanders.com/issues/creating-jobs-rebuilding-america/) he terms "The Rebuild America Act." (It is worth noting that the Presidential candidate may put forth a platform, but ultimately the power of the purse resides with Congress. Don't boo, vote.)
@@ -41,7 +41,7 @@ Therefore, from the standpoint of evaluating operational efficiency at airports,
 
 To this point, we've been discussing the proportion of flights that are delayed, but this is only half the story: we need to consider not only how often flights are late, but _how late_ are the late flights (on average)?
 
-![Distribution of Magnitude of Average Delay, and Probability of a Delay](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/arrival_delays_drive_departure_delays.png)
+![Distribution of Magnitude of Average Delay, and Probability of a Delay](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/mag_freq_delay.png)
 
 As show below, there is a strong correlation between the magnitude and frequency of delays, which suggests using Net Delay Score (average delay times the frequency of delay) is a better representation of true lateness (the target in our model) than using either of these factors independently. Then, after scaling the remaining features, I implemented a random forest model in order to extract feature importance. Here is the summary of the takeaways:
 
@@ -52,13 +52,13 @@ As show below, there is a strong correlation between the magnitude and frequency
 
 ## Airports as a 'Weak Link System' - A Digression with Sports Analogy
 
-I am borrowing the term "weak link system" from Malcolm Gladwell's excellent _Revisionist History_ podcast ()"My Little Hundred Million")[http://revisionisthistory.com/episodes/06-my-little-hundred-million] (which seems itself borrowed from ("Why Everything You Know About Soccer is Wrong") [https://www.amazon.com/Numbers-Game-Everything-About-Soccer/dp/0143124560?ie=UTF8&*Version*=1&*entries*=0]. I am defining a "weak link" system, for the purposes of this post as:
+I am borrowing the term "weak link system" from Malcolm Gladwell's excellent _Revisionist History_ podcast ["My Little Hundred Million"](http://revisionisthistory.com/episodes/06-my-little-hundred-million) which seems itself borrowed from ["Why Everything You Know About Soccer is Wrong"](https://www.amazon.com/Numbers-Game-Everything-About-Soccer/dp/0143124560?ie=UTF8&*Version*=1&*entries*=0). I am defining a "weak link" system, for the purposes of this post as:
 
 >"A network in which the greatest marginal efficiency improvement can be achieved by increasing efficiency in the least productive nodes, because the system is highly mutually interdependent. In contrast, **a strong link system"** is one where the greatest marginal efficiency benefits can be achieved through investment in the central or most important nodes.""
 
 Gladwell explains the concept most intuitively by using the analogy of Soccer versus Basketball. In short, in Basketball, teams rely heavily on their best players, so the teams with the best players tend to do well (think Stephen Curry on the Warriors, or Lebron James on the Cavs); soccer, however, is a game where the quality of a team is driven more by its __worst__ player.
 
-A very cursory look at some (soccer)[https://www.whoscored.com/Regions/252/Tournaments/2/Seasons/3853/Stages/7794/TeamStatistics/England-Premier-League-2013-2014] and (basketball)[http://www.basketball-reference.com/leagues/NBA_stats.html] statistics bore this example out: in soccer, most teams pass the ball roughly ten times (30-40) more per shot than in the NBA (2-4), suggesting that in order to score a goal, a lot more has to go right in soccer. Because so many players must contribute to any score in soccer - and therefore had many opportunities to be the 'weak link' that errs, allowing the other team to retake possession - ones worst player(s) have a disproportionate impact on the quality of the team as a whole.
+A very cursory look at some [soccer](https://www.whoscored.com/Regions/252/Tournaments/2/Seasons/3853/Stages/7794/TeamStatistics/England-Premier-League-2013-2014) and [basketball](http://www.basketball-reference.com/leagues/NBA_stats.html) statistics bore this example out: in soccer, most teams pass the ball roughly ten times (30-40) more per shot than in the NBA (2-4), suggesting that in order to score a goal, a lot more has to go right in soccer. Because so many players must contribute to any score in soccer - and therefore had many opportunities to be the 'weak link' that errs, allowing the other team to retake possession - ones worst player(s) have a disproportionate impact on the quality of the team as a whole.
 
 In basketball, stars can compensate for poor or highly specialized players as evidenced by how stars like Lebron James can occupy the primary defensive and offensive roles on the court, or how others like Stephen Curry can score on possessions without a single pass. The best soccer player on earth, Lionel Messi, cannot make up for his team's defense (long Argentina's achilles heel), nor score single-handedly more than a few times a season.
 
@@ -99,15 +99,10 @@ As we can see, the inclusion of GPS features makes these clusters dominated by t
 
 ![t-SNE - Final Grouping Recommendations](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj7/t_sne_dbscan_labels.png)
 
-For purposes of interpretation, blue points classified as '-1' are the airports to which this analysis recommends allocating funding. As expected, all the New York Airports and other major hubs (such as ATL) were classified in the '-1' category (note that each point is an airport-year, so multiple points on this plot might represent LGA, for example). As new years are added to this model, we can reclassify each airport annually based on the performance of the prior year. 
+For purposes of interpretation, blue points classified as '-1' are the airports to which this analysis recommends allocating funding. As expected, all the New York Airports and other major hubs (such as ATL) were classified in the '-1' category (note that each point is an airport-year, so multiple points on this plot might represent LGA, for example). As new years are added to this model, we can reclassify each airport annually based on the performance of the prior year.
 
 ### Conclusion
 
 These airports are highly interdependent with the rest of the system, meaning that investing in them is not simply going to improve the experience of folks traveling to and from tristate area (or Georgia), but the efficiency of the system as a whole, which is an especially important consideration from the perspective of a federal administrator. This post recommends allocating federal funds broadly amongst each of these interconnected, under-performing, high-volume airports.
 
-
-
-## What
-
-
- DB Scan Model- not including GPS coordinates.
+Code available on github for this interested!

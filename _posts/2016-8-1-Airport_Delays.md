@@ -7,7 +7,7 @@ Much is made of America's need to make major infrastructure investments, with bo
 
 Hillary Clinton specifically highlights airports as key within her infrastructure proposal:
 
->"[My plan calls for] making smart investments in ports, airports, roads, and waterways to address the key chokepoints for the movement of goods in our economy...It means building airports and air traffic control systems that set the world standard for efficiency, reliability, and safety — saving time, money, and energy on every trip."[source](https://www.hillaryclinton.com/briefing/factsheets/2015/11/30/clinton-infrastructure-plan-builds-tomorrows-economy-today/)
+>"[My plan calls for] making smart investments in ports, airports, roads, and waterways to address the key chokepoints for the movement of goods in our economy...It means building airports and air traffic control systems that set the world standard for efficiency, reliability, and safety — saving time, money, and energy on every trip" [(source).](https://www.hillaryclinton.com/briefing/factsheets/2015/11/30/clinton-infrastructure-plan-builds-tomorrows-economy-today/)
 
 As the plan highlights, the purpose of spending on airports is to make "the movement of goods" (or people) cheaper and faster, helping America's economy become more efficient. There seems to be bipartisan consensus about the need to invest in efficiency (at least in this narrow context), but how should we best achieve these efficiency gains? Where should the first billion go?
 

@@ -3,8 +3,7 @@ layout: post
 title: Who Lives, Who Dies, Who Tells Your Story? (Titanic Edition)
 ---
 
-
-> Employing Various Classification Techniques to Identify Titanic Survivors, Based on Passenger Log
+This post revisits a classic machine learning dataset: the Titanic passenger log. This post focuses on feature extraction, as well as focusing on a number of methodological decisions in data preparation. Hint: I recommend against getting a ticket in Cabin C. 
 
 ## Context
 

@@ -3,7 +3,9 @@ layout: post
 title: Make American Aviation On-Time Again
 ---
 
-Much is made of America's need to make major infrastructure investments, with looming consensus about the importance of major infrastructure investment this upcoming Presidential term. Hillary announced in 2015 that her platform includes a plan to allocate an average of $55 billion per year over five years to finance major infrastructure improvements ([Donald Trump recently offered that he wants to double this amount](http://www.nytimes.com/2016/08/03/us/politics/trump-clinton-infrastructure.html)), while Bernie has put forward an [even bigger spending bill](https://berniesanders.com/issues/creating-jobs-rebuilding-america/) he terms "The Rebuild America Act." (It is worth noting that the Presidential candidate may put forth a platform, but ultimately the power of the purse resides with Congress. Don't boo, vote.)
+Much is made of America's need to make major infrastructure investments, with each major candidate this election cycle offering their own take on how American should invest in infrastructure. This post explores a specific subsection of American infrastructure: airports. It explores why is the system is so delayed and how should we fix it.
+
+Hillary Clinton announced in 2015 that her platform includes a plan to allocate an average of $55 billion per year over five years to finance major infrastructure improvements ([Donald Trump recently offered that he wants to double this amount](http://www.nytimes.com/2016/08/03/us/politics/trump-clinton-infrastructure.html)), while Bernie has put forward an [even bigger spending bill](https://berniesanders.com/issues/creating-jobs-rebuilding-america/) he terms "The Rebuild America Act." (It is worth noting that the Presidential candidate may put forth a platform, but ultimately the power of the purse resides with Congress. Don't boo, vote.)
 
 Hillary Clinton specifically highlights airports as key within her infrastructure proposal:
 

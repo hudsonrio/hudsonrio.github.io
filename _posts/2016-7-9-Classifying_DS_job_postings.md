@@ -2,8 +2,8 @@
 layout: post
 title: Predicting Data Science Compensation from Public Job Postings
 ---
+What if you knew what salary you were going to be offered, before even interviewing with a given company? The goal of this post is to scape data and construct a model that will estimate the salary a potential applicant will be offered, based only what is available on Indeed.com job postings.
 
-> Employing Logistic Regression to Identify 'Above-Average' Paying Data Science Roles posted on Indeed.com
 
 ## Context
 

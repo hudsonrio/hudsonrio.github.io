@@ -2,24 +2,12 @@
 layout: post
 title: Pop Theory - (Emotionally) Neutral Song Titles are Boring
 ---
-
-
-> "All the women, who are **independent**
-> Throw your hands up at me
-> All the honeys, who making money
-> Throw your hands up at me"
-
-_**Independent** Women_, Destiny’s Child 2000
-
-> "I _**need**_ you like water
-> Like breath, like rain
-
-_I **Need** You_, Leann Rimes, 2000
+How you write a commercially successfully, early-00s pop single? Or, what does the data tell us about how to avoid a boring song title.
 
 
 ## Context
 
-The early 2000s were pretty angsty. We had just stepped into the 21st century and, frankly, popular music was all over the place. In the heat of peak N'Sync and Destiny's Child, I was tasked with constructing a model that could predict hits. But how? What features I could extract that could cut through the noise?
+The early 2000s were pretty angsty. We had just stepped into the 21st century and, frankly, popular music was all over the place. In the heat of peak N'Sync and Destiny's Child, I wanted to create a model that could predict the hits. But how? What features I could extract that could cut through the noise?
 
 ## Hypothesis
 
@@ -41,6 +29,26 @@ This lead to the construction of  a combination metric, which I named "Billboard
 
 
 I used a [publicly funded dataset called Inquirer](http://www.wjh.harvard.edu/~inquirer/homecat.htm) made available by Harvard that classifies nearly every word in English by a number of categories, including positive or negative.  I compared each song title to these lists, classifying each song by how positive or negative the title was to classify, as seen below. The dataset is rich in different classifications of words, and I encourage those interested to check it out.
+
+
+### Example of Positive Language
+
+> "All the women, who are **independent**
+> Throw your hands up at me
+> All the honeys, who making money
+> Throw your hands up at me"
+
+**Independent** Women, Destiny’s Child 2000
+
+
+### Example of Negative Language
+
+> "I _**need**_ you like water
+> Like breath, like rain
+
+_I **Need** You_, Leann Rimes, 2000
+
+
 
 ## Analysis
 

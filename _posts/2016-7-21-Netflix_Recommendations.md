@@ -3,7 +3,7 @@ layout: post
 title: Which Movies Should Netflix Acquire, and Why?
 ---
 
-> Identifying High-Upside Movie Acquisitions for Netflix
+Hypothesizing about Netflix's content acquisition strategy, feature extraction, and constructing a model to identify high-upside content opportunities.
 
 ## Context
 
@@ -55,11 +55,11 @@ Regarding the second, this "small-screen" effect does not seem to have dissuaded
 
 !["An all-around disappointment, Marco Polo is less entertaining than a round of the game that shares its name."](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj6/marco_polo.jpg?raw=true "Marco Polo")
 
-Therefore, I will be constructing a range of Decision Tree/Random Forest Models that attempt to predict what I will refer to as "popcorn score," or more precisesly the measure of Rotten Tomatoes users who classify a given movie as "Fresh" (divided by the number of respondents).
+Therefore, I will be constructing a range of Decision Tree/Random Forest Models that attempt to predict what I will refer to as "popcorn score," or more precisely the measure of Rotten Tomatoes users who classify a given movie as "Fresh" (divided by the number of respondents).
 
 ### Features Sidebar
 
-One of the greatest challenges in these models is in chooising between which features to retain, and which to drop. Fortunately, my dataset was upwards of 7,000 observations, so I was able to comfortably to retain a strong sample size despite dropping some values. As you can see on the plot below, however, some categories had a large number of missing values (boxoffice especially), which forced me to drop it as a feature from my model. Metascore had 3608 missing values, but because I saw it as a key feature in the sense that I wanted to test my hypothesis that critical acclaim was distinct (although somewhat informative of) popular opinion. In subsequent analysis, I might drop Metascore from my analysis, however. For more on the feat
+One of the greatest challenges in these models is in choosing between which features to retain, and which to drop. Fortunately, my dataset was upwards of 7,000 observations, so I was able to comfortably to retain a strong sample size despite dropping some values. As you can see on the plot below, however, some categories had a large number of missing values (box office especially), which forced me to drop it as a feature from my model. Metascore had 3608 missing values, but because I saw it as a key feature in the sense that I wanted to test my hypothesis that critical acclaim was distinct (although somewhat informative of) popular opinion. In subsequent analysis, I might drop Metascore from my analysis, however. For more on the feat
 
 ![Used Features with Low Number of Null Values](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_proj6/feature_nulls.jpg?raw=true)
 

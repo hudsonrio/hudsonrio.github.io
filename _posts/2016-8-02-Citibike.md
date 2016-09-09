@@ -3,7 +3,7 @@ layout: post
 title: What is Big Data, and what does it have to say about the Citibike gender gap?
 ---
 
-This mini-post explores how, using "the cloud" (Amazon AWS clusters) and Hive (a query interface on top of Hadoop) I explored the demographics of New York's Citibike system, using this example to write a piece in plain english about what "Big Data" means in practice.
+This mini-post explores how, using Amazon AWS and Hive, I explored the demographics of New York City's Citibike system. The post explores what "Big Data" means in practice, concluding with some observations about NYC's bike system's users.
 
 ## Context
 
@@ -13,7 +13,6 @@ As has been noted elsewhere in [2014](http://iquantny.tumblr.com/post/8217215743
 
 For the purposes of this post, I define "Big Data" as any set of data that is simply too large to analyzed on a single computer. Many of the previous posts used quite large datasets and while many of the models, or functions that were applied to these datasets did _take a while to run_, "Big Data" is still distinct. Big Data, such as this Citibike dataset, simply cannot be loaded into local memory of a typical laptop such that operations can be performed (such as, for example, taking the mean duration of each trip).
 
-![Big Data Relies On Rooms Full of Servers ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_citi/servers.jpg?raw=true)
 
 We are therefore left with two possible approaches to exploring gender dynamics within these ~ 30 million rides:
 
@@ -22,7 +21,10 @@ We are therefore left with two possible approaches to exploring gender dynamics 
 
 The first option is cost prohibitive and, unfortunately, not scalable. Let's say we want to revisit this analysis in a decade, and instead of 30 million rides, we have more like 300 million rides. Even if a super computer could keep up, it would be cost prohibitive.
 
-The second option, however, is the almost ubiquitous method for handling "Big Data." What this approach entails is essentially that rather than create a massive computer that can do a massive operation, we must instead break up one huge task into smaller components, and distribute the work to a 'cluster' of (relatively small) Amazon servers. Among the benefits, this approach provides scalability: one can simply add servers to an existing cluster when faced with increased demand.
+The second option, however, is the almost ubiquitous method for handling "Big Data." Rather than create a massive computer that can do a massive operation, we must instead break up one huge task into smaller components, and distribute the work to a 'cluster' of servers (such as those pictured below). This approach makes possible real-time data processing, substantially decreases the upfront cost of building and maintaining servers, and provides scalability: one can simply add servers to an existing cluster when faced with increased demand.
+
+![Option 2: Big Data Relies On Rooms Full of Servers ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_citi/servers.jpg?raw=true)
+
 
 Hadoop is a Java-based programing framework for distributing such tasks, while Hive is essentially a layer that allows for "SQL" style queries upon the data in working memory. By using a cluster of computers, we can simply 'rent' enough server space from Amazon to fulfill practically any sized task, while overseeing the process from one's local computer. The analysis below was completed by querying in Hive.
 
@@ -39,7 +41,6 @@ In short, because of the millions of individual rides - in this case, each of wh
 3. Riders in Brooklyn tend to be younger; the Citibike dock immediately outside the Myrtle Broadway JMZ stop, for example, has an average age among riders of about 31.
 
 4. Riders on the Upper West Side tend to be older. All three Citibike dock on River Side Drive between 72nd and 82nd have an average rider age of over 44.
-
 
 5. The area with the most disproportionately male ridership was (approximately) between 35th and 53rd, especially on the East Side, suggesting that while some combination of men who work in Midtown and male tourists ride Citibikes, few women do so, perhaps due to social pressures experienced in the workplace.
 

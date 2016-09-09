@@ -2,7 +2,7 @@
 layout: post
 title: Pop Theory - (Emotionally) Neutral Song Titles are Boring
 ---
-How you write a commercially successfully, early-00s pop single? Or, what does the data tell us about how to avoid a boring song title.
+How you write a commercially successfully, early-00s pop single? Or, what does the data tell us about how to avoid a boring song title?
 
 
 ## Context

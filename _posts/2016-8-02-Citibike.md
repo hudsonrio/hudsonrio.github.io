@@ -3,7 +3,7 @@ layout: post
 title: What is Big Data, and What Does it Have to Say about the Citibike Gender Gap?
 ---
 
-This post explores how, using "the cloud" (Amazon AWS clusters) and Hive (a query interface on top of Hadoop) I explored the demographics of New York's Citibike system, especially Citibike's gender gap. Fortunately, there is a large (> 10GBs), anonymized, [publicly available dataset](https://www.citibikenyc.com/system-data) of **all bike rides from 2013-2016** with which we can explore the system.
+This mini-post explores how, using "the cloud" (Amazon AWS clusters) and Hive (a query interface on top of Hadoop) I explored the demographics of New York's Citibike system, using this example to write a piece in plain english about what "Big Data" means in practice.
 
 ## Context
 
@@ -11,7 +11,9 @@ As has been noted elsewhere in [2014](http://iquantny.tumblr.com/post/8217215743
 
 ### Why Would you Use Big Data Tools for This? What is "Big Data" anyway?
 
-Although "big" is a vague term, "Big Data" has a practical definition for our purposes: Big Data is any set of data that is simply too large to analyzed on a single computer. Many of the previous posts used quite large datasets (the movie dataset was thousands of rows, for example) and while many of the models, or functions that were applied to these datasets did _take a while to run_, "Big Data" is still distinct. Big Data, such as this Citibike dataset, simply cannot be loaded into local memory of a typical laptop such that operations can be performed (such as taking the mean duration of each trip).
+For the purposes of this post, I define "Big Data" as any set of data that is simply too large to analyzed on a single computer. Many of the previous posts used quite large datasets and while many of the models, or functions that were applied to these datasets did _take a while to run_, "Big Data" is still distinct. Big Data, such as this Citibike dataset, simply cannot be loaded into local memory of a typical laptop such that operations can be performed (such as, for example, taking the mean duration of each trip).
+
+![Big Data Relies On Rooms Full of Servers ](https://raw.githubusercontent.com/hudsonrio/hudsonrio.github.io/master/images/blog%20posts/images_citi/servers.jpg?raw=true)
 
 We are therefore left with two possible approaches to exploring gender dynamics within these ~ 30 million rides:
 
@@ -20,7 +22,7 @@ We are therefore left with two possible approaches to exploring gender dynamics 
 
 The first option is cost prohibitive and, unfortunately, not scalable. Let's say we want to revisit this analysis in a decade, and instead of 30 million rides, we have more like 300 million rides. Even if a super computer could keep up, it would be cost prohibitive.
 
-The second option, however, is the almost ubiquitous method for handling "big data." What this approach entails is essentially that rather than create a massive computer that can do a massive operation, we must instead break up one huge task into smaller components, and distribute the work to a 'cluster' of (relatively small) Amazon servers. Among the benefits, this approach provides scalability: one can simply add servers to an existing cluster when faced with increased demand.
+The second option, however, is the almost ubiquitous method for handling "Big Data." What this approach entails is essentially that rather than create a massive computer that can do a massive operation, we must instead break up one huge task into smaller components, and distribute the work to a 'cluster' of (relatively small) Amazon servers. Among the benefits, this approach provides scalability: one can simply add servers to an existing cluster when faced with increased demand.
 
 Hadoop is a Java-based programing framework for distributing such tasks, while Hive is essentially a layer that allows for "SQL" style queries upon the data in working memory. By using a cluster of computers, we can simply 'rent' enough server space from Amazon to fulfill practically any sized task, while overseeing the process from one's local computer. The analysis below was completed by querying in Hive.
 

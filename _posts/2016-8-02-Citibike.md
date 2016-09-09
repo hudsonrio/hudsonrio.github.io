@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What is Big Data, and What Does it Have to Say about the Citibike Gender Gap?
+title: What is Big Data, and what does it have to say about the Citibike gender gap?
 ---
 
 This mini-post explores how, using "the cloud" (Amazon AWS clusters) and Hive (a query interface on top of Hadoop) I explored the demographics of New York's Citibike system, using this example to write a piece in plain english about what "Big Data" means in practice.

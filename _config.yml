@@ -6,7 +6,7 @@
 name: Hudson Cavanagh
 
 # Short bio or description (displayed in the header)
-description: Data Science (Python, SQL)
+description: Data Scientist / Data Engineer who helps Democrats win
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars0.githubusercontent.com/u/19151749?v=3&s=460
@@ -21,9 +21,9 @@ footer-links:
   email: hucavanagh@gmail.com
   facebook:
   flickr:
-  github: https://github.com/hudsonrio/
+  github:
   instagram:
-  linkedin: https://www.linkedin.com/in/hudsoncavanagh
+  linkedin: hudsoncavanagh
   pinterest:
   rss: # just type anything here for a working RSS icon
   twitter:
